@@ -46,6 +46,7 @@
 .#*
 *.obj
 *.swp
+*.tags
 
 ## mesh
 processor*
