@@ -1,0 +1,37 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.1                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : 4.1
+Exec   : blockMesh
+Date   : Mar 12 2019
+Time   : 22:09:50
+Host   : "gra-login3"
+PID    : 22264
+Case   : /home/superran/myGitHub/EI-FOAM/whatIsWrongWhenNoFluid/pre/blockMesh/pipe
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Overriding DebugSwitches according to controlDict
+Creating block mesh from
+    "/home/superran/myGitHub/EI-FOAM/whatIsWrongWhenNoFluid/pre/blockMesh/pipe/system/blockMeshDict"
+
+
+--> FOAM FATAL IO ERROR: 
+Expected a '(' while reading VectorSpace<Form, Cmpt, Ncmpts>, found on line 43 the word 'name'
+
+file: /home/superran/myGitHub/EI-FOAM/whatIsWrongWhenNoFluid/pre/blockMesh/pipe/system/blockMeshDict.vertices at line 43.
+
+    From function Foam::Istream &Foam::Istream::readBegin(const char *)
+    in file db/IOstreams/IOstreams/Istream.C at line 92.
+
+FOAM exiting
+
