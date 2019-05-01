@@ -1,6 +1,40 @@
+* TOC                                                                   :TOC:
+- [[#climbing-src][climbing src]]
+  - [[#pisofoam][pisoFoam]]
+- [[#tutorials][tutorials]]
+  - [[#pip][pip]]
+  - [[#dambreak][damBreak]]
+- [[#why-mesh-not-pass][why mesh not pass]]
+  - [[#initial-asking][initial asking]]
+  - [[#2nd-round][2nd round]]
+  - [[#reply-to-wwzhao-study-wm_label_size][reply to wwzhao: study $WM_LABEL_SIZE]]
+  - [[#change-from-32-to-64-not-always-success][change from 32 to 64 not always success]]
+  - [[#what-is-clone][what is ~clone()~]]
+  - [[#what-is-difference-between-ulist-and-list][what is difference between ~UList~ and ~List~?]]
+  - [[#why-there-is-nothing-in-destructor][Why there is nothing in Destructor]]
+  - [[#prepare-a-issue-for-of][prepare a issue for OF]]
+  - [[#attack-from-wm_label_size][attack from WM_LABEL_SIZE]]
+  - [[#int_32-and-int_64][int_32 and int_64]]
+  - [[#something-interesting][something interesting]]
+- [[#my-stuip-questions][my stuip questions]]
+  - [[#allrun-shell][Allrun shell]]
+
+* climbing src
+
+  I don't like to learn CFD by reading tons of tons equations. What I
+  like to learn CFD is by watching those equations. I mean, by
+  tweaking source code or by changing some configurations (intitial
+  conditions, boundary condition, tweaking with mesh, ...), this
+  journey will become more interesting. I do believe I would become
+  addictive to CFD just like the experience Emacs gives to me.
+
+  However, I don't have a map. So, I will just pickup anything that is
+  interesting to me.
+
+** pisoFoam
 
 * tutorials
-** pip
+** TODO pip
 *** what is the case?
     A 2D line rotation.
 
@@ -8,7 +42,7 @@
     [[file:attached_images/screenshot_2019-03-01_22-35-17.png]]
 
 *** what is happening?
-   
+    
 *** what is take away?
 
     #+DOWNLOADED: /tmp/screenshot.png @ 2019-02-28 21:46:53
@@ -18,57 +52,62 @@
     #+DOWNLOADED: /tmp/screenshot.png @ 2019-02-28 23:19:54
     [[file:attached_images/screenshot_2019-02-28_23-19-54.png]]
 
-** damBreak
+** TODO damBreak
+   [[https://cfd.direct/openfoam/user-guide/v6-damBreak/][web doc]]
+*** what is the case?
 
-*** vertices
-    #+CONSTANTS: convertToMeters=0.146
+**** vertices
+     #+CONSTANTS: convertToMeters=0.146
    
-    |       x |       y |         x' |         y' |
-    |---------+---------+------------+------------|
-    |       0 |       0 |         0. |         0. |
-    |       2 |       0 |      0.292 |         0. |
-    | 2.16438 |       0 | 0.31599948 |         0. |
-    |       4 |       0 |      0.584 |         0. |
-    |       0 | 0.32876 |         0. | 0.04799896 |
-    |       2 | 0.32876 |      0.292 | 0.04799896 |
-    | 2.16438 | 0.32876 | 0.31599948 | 0.04799896 |
-    |       4 | 0.32876 |      0.584 | 0.04799896 |
-    |       0 |       4 |         0. |      0.584 |
-    |       2 |       4 |      0.292 |      0.584 |
-    | 2.16438 |       4 | 0.31599948 |      0.584 |
-    |       4 |       4 |      0.584 |      0.584 |
-    #+TBLFM: $3=$1 * $convertToMeters
-    #+TBLFM: $4=$2 * $convertToMeters
+     |       x |       y |         x' |         y' |
+     |---------+---------+------------+------------|
+     |       0 |       0 |         0. |         0. |
+     |       2 |       0 |      0.292 |         0. |
+     | 2.16438 |       0 | 0.31599948 |         0. |
+     |       4 |       0 |      0.584 |         0. |
+     |       0 | 0.32876 |         0. | 0.04799896 |
+     |       2 | 0.32876 |      0.292 | 0.04799896 |
+     | 2.16438 | 0.32876 | 0.31599948 | 0.04799896 |
+     |       4 | 0.32876 |      0.584 | 0.04799896 |
+     |       0 |       4 |         0. |      0.584 |
+     |       2 |       4 |      0.292 |      0.584 |
+     | 2.16438 |       4 | 0.31599948 |      0.584 |
+     |       4 |       4 |      0.584 |      0.584 |
+     #+TBLFM: $3=$1 * $convertToMeters
+     #+TBLFM: $4=$2 * $convertToMeters
 
-*** clean tutorial case
-    #+BEGIN_SRC 
-    . "$WM_PROJECT_DIR/bin/tools/CleanFunctions"
-    cleanCase
-    #+END_SRC
-*** bash file
+*** what is happening?
 
-    Maybe I can improve my version of this:
+*** what is take away?
+**** clean tutorial case
+     #+BEGIN_SRC 
+     . "$WM_PROJECT_DIR/bin/tools/CleanFunctions"
+     cleanCase
+     #+END_SRC
+**** bash file
 
-    #+BEGIN_SRC sh
-      #!/bin/sh
-      cd ${0%/*} || exit 1    # Run from this directory
+     Maybe I can improve my version of this:
 
-      # Source tutorial clean functions
-      . $WM_PROJECT_DIR/bin/tools/CleanFunctions
+     #+BEGIN_SRC sh
+       #!/bin/sh
+       cd ${0%/*} || exit 1    # Run from this directory
 
-      keepCases="damBreak"
-      loseCases="damBreakFine"
+       # Source tutorial clean functions
+       . $WM_PROJECT_DIR/bin/tools/CleanFunctions
 
-      for case in $keepCases
-      do
-	  (cd $case && foamCleanTutorials)
-      done
+       keepCases="damBreak"
+       loseCases="damBreakFine"
 
-      for case in $loseCases
-      do
-	  removeCase $case
-      done
-    #+END_SRC
+       for case in $keepCases
+       do
+	   (cd $case && foamCleanTutorials)
+       done
+
+       for case in $loseCases
+       do
+	   removeCase $case
+       done
+     #+END_SRC
 
 * [[http://cfd-china.com/topic/2191/openfoam%E5%91%A8%E6%9C%9F%E8%BE%B9%E7%95%8C%E7%94%9F%E6%88%90%E4%B8%8D%E6%88%90%E5%8A%9F-cyclic%E7%9A%84%E9%97%AE%E9%A2%98][why mesh not pass]]
 ** DONE initial asking
