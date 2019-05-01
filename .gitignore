@@ -54,8 +54,8 @@ polyMesh
 
 ## post process
 postProcessing
-[1-9]*
-*.[1-9]*
+[0-9]*
+*.[0-9]*
 *.dat
 
 ## latex related
