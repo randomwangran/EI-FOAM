@@ -29,7 +29,7 @@ u = zeros(Ny+1,Nx+1)+0.1;   %constant value of 0.1 (initializes velocity field)
 u1=u;  
 v1=v;
 dp1=zeros(Nx,Ny);
-residual1=zeros(Nx,Ny);
+residual1=zeros(Nx,Ny); 
 
 %timestep value, relaxation factor, number of iterations (ENTER)
 dt=1;             

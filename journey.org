@@ -51,6 +51,17 @@
     Nice term: Reynolds number is just a non-dimensional number,
     i.e. the ratio of convection and diffusion.
 
+**** derive convective terms using central difference method
+
+     Equation 14:
+
+     - u:             [ u(i,j-1) + u(i,j+1) ]  /  2
+
+     - dia u / dia x: [ u(i,j-1) - u(i,j+1) ]  /  2
+
+     Equation 15:
+
+
 *** TODO read J. Anderson's babel
 * tutorials
 ** TODO pip
