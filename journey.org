@@ -48,6 +48,9 @@
     At first glance, I think this is a very good paper. With the code
     one can tweak. The writing is easy to follow.
 
+    Nice term: Reynolds number is just a non-dimensional number,
+    i.e. the ratio of convection and diffusion.
+
 *** TODO read J. Anderson's babel
 * tutorials
 ** TODO pip
