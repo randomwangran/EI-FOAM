@@ -44,6 +44,16 @@ Description
   |                                 |
   +---------------------------------+
 
+
+
+  My first question is: what is PISO algorithem?
+
+  > Pressure-Implicit with Splitting of Operators
+
+  It's an extension to SIMPLE algorithm.
+
+  So, I stop here.
+
 */
 
 
