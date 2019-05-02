@@ -41,6 +41,14 @@
    [[file:of-6/OpenFOAM-6-master/applications/solvers/incompressible/simpleFoam/simpleFoam.C::int%20main(int%20argc,%20char%20*argv%5B%5D)][src]]
 
 
+*** a matlab version
+
+    [[file:ref/simple-by-Khawaja.m::clear%20all][simple-matlab-version]] and it's [[docview:ref/408-1137-1-PB.pdf::3][corresponding paper]]
+
+    At first glance, I think this is a very good paper. With the code
+    one can tweak. The writing is easy to follow.
+
+*** TODO read J. Anderson's babel
 * tutorials
 ** TODO pip
 *** what is the case?
