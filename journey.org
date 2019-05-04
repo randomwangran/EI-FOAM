@@ -65,6 +65,8 @@
 
      In addition, I am not following this equation.
 
+     <2019-05-04 Sat> Still confused by eq-15.
+
 *** TODO read J. Anderson's babel
 * tutorials
 ** TODO pip
