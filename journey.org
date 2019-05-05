@@ -50,7 +50,7 @@
 
     Nice term: Reynolds number is just a non-dimensional number,
     i.e. the ratio of convection and diffusion.
-
+    
 **** derive convective terms using central difference method
 
      Equation 14:
@@ -66,6 +66,10 @@
      In addition, I am not following this equation.
 
      <2019-05-04 Sat> Still confused by eq-15.
+
+     <2019-05-05 Sun> Today, I review eq-15, expand it and find
+     nothing why the author the format of eq-15. My question is what
+     velocity at which grid  we choose to do the difference?
 
 *** TODO read J. Anderson's babel
 * tutorials
