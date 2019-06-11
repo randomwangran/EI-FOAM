@@ -913,7 +913,8 @@ maximum number in the current case (faces) there is 769512000 faces.
       ./makeParaView -python -mpi -python-lib /usr/lib/arm-linux-gnueabihf/libpython2.7.so.1.0 > log.makePV 2>&1
     #+END_SRC
     
-   
+    <2019-06-11 Tue 16:52> system shut down; might relate to too much
+    cpu load. temperature > 40C.
 
   
   
