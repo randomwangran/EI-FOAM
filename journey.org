@@ -19,6 +19,7 @@
   - [[#something-interesting][something interesting]]
 - [[#my-stuip-questions][my stuip questions]]
   - [[#allrun-shell][Allrun shell]]
+- [[#compiling-on-raspberry-pi-3][compiling on raspberry Pi 3]]
 
 * climbing src
 
@@ -889,3 +890,30 @@ maximum number in the current case (faces) there is 769512000 faces.
    Why they put this line here?
 
    
+
+* compiling on raspberry Pi 3
+
+  Following [[http://openfoamwiki.net/index.php/Installation/Linux/OpenFOAM-dev/Raspbian][this instruction]].
+
+  - Step 10
+
+    <2019-06-11 Tue 16:37>
+
+    #+BEGIN_SRC sh
+    ./Allwmake > log.make 2>&1
+    #+END_SRC
+
+    <2019-06-11 Tue 16:42>
+    
+  - Step 11
+
+    <2019-06-11 Tue 16:44> start to build ParaView with Python and MPI:
+
+    #+BEGIN_SRC sh
+      ./makeParaView -python -mpi -python-lib /usr/lib/arm-linux-gnueabihf/libpython2.7.so.1.0 > log.makePV 2>&1
+    #+END_SRC
+    
+   
+
+  
+  
