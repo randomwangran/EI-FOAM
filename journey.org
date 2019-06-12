@@ -946,3 +946,9 @@ maximum number in the current case (faces) there is 769512000 faces.
     Now start to build OF:
     <2019-06-11 Tue 20:11> ./Allwmake 
   
+    <2019-06-12 Wed 15:32> Building success!
+
+    Total building time: 19 hours and 21 minutes.
+
+    Now I can tweak OpenFOAM and ParaView in my raspberry Pi 3+(B)!
+    What a day!
