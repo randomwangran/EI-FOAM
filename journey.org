@@ -895,12 +895,27 @@ maximum number in the current case (faces) there is 769512000 faces.
 
   Following [[http://openfoamwiki.net/index.php/Installation/Linux/OpenFOAM-dev/Raspbian][this instruction]].
 
+  - Step 8
+
+    #+BEGIN_SRC sh
+      source $HOME/OpenFOAM/OpenFOAM-6/etc/bashrc FOAMY_HEX_MESH=yes
+    #+END_SRC
   - Step 10
 
     <2019-06-11 Tue 16:37>
 
     #+BEGIN_SRC sh
-    ./Allwmake > log.make 2>&1
+      cd $WM_THIRD_PARTY_DIR
+
+      #make very certain that the correct Qt version is being used, by running this command:
+      export QT_SELECT=qt4
+
+      # This next command will take a while... somewhere between 5 minutes to 30 minutes.
+      ./Allwmake > log.make 2>&1
+
+      #update the shell environment
+
+      ./Allwmake > log.make 2>&1
     #+END_SRC
 
     <2019-06-11 Tue 16:42>
@@ -910,11 +925,24 @@ maximum number in the current case (faces) there is 769512000 faces.
     <2019-06-11 Tue 16:44> start to build ParaView with Python and MPI:
 
     #+BEGIN_SRC sh
+      cd $WM_THIRD_PARTY_DIR
+      export QT_SELECT=qt4
+
       ./makeParaView -python -mpi -python-lib /usr/lib/arm-linux-gnueabihf/libpython2.7.so.1.0 > log.makePV 2>&1
     #+END_SRC
     
     <2019-06-11 Tue 16:52> system shut down; might relate to too much
     cpu load. temperature > 40C.
 
-  
+
+    I later found that the usage of memeory exceeded the upper
+    limit. Then, the OS shut down all the program.
+
+    Now, <2019-06-11 Tue 20:10>, I follow this instruction:
+    http://www.wolfdynamics.com/images/raspberry/OpenFOAM-RPI3.pdf
+
+    ParaView was successfully installed.
+
+    Now start to build OF:
+    <2019-06-11 Tue 20:11> ./Allwmake 
   
