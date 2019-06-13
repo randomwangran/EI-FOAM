@@ -20,6 +20,7 @@
 - [[#my-stuip-questions][my stuip questions]]
   - [[#allrun-shell][Allrun shell]]
 - [[#compiling-on-raspberry-pi-3][compiling on raspberry Pi 3]]
+  - [[#i-am-sure-i-will-be-addictive-to-openfoam][I am sure I will be addictive to OpenFOAM]]
 
 * climbing src
 
@@ -954,3 +955,31 @@ maximum number in the current case (faces) there is 769512000 faces.
     What a day!
 
     After clean test.
+
+** I am sure I will be addictive to OpenFOAM
+
+   #+BEGIN_SRC sh
+pi@raspberrypi:~ $ wr-icoFoam 
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 6-71f2e7b5a2bc
+Exec   : wr-icoFoam
+Date   : Jun 12 2019
+Time   : 22:55:06
+Host   : "raspberrypi"
+PID    : 12219
+I/O    : uncollated
+Case   : /home/pi
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+   #+END_SRC

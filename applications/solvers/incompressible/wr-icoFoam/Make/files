@@ -1,0 +1,3 @@
+wr-icoFoam.C
+
+EXE = $(FOAM_APPBIN)/wr-icoFoam
