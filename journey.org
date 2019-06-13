@@ -952,3 +952,5 @@ maximum number in the current case (faces) there is 769512000 faces.
 
     Now I can tweak OpenFOAM and ParaView in my raspberry Pi 3+(B)!
     What a day!
+
+    After clean test.
