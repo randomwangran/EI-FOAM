@@ -30,6 +30,13 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
+//-wr why xref cannot find fvCFD.H?
+
+//-wr    this is just a test for comment in OF's source
+//-wr    code with many line.
+//-wr
+//-wr    A second paragrah.
+
 #include "pisoControl.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
