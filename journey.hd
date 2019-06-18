@@ -1,5 +1,0 @@
-* [[http://cfd-china.com/topic/2188/25%25E4%25BA%25BF%25E7%25BD%2591%25E6%25A0%25BC%25E7%259B%25B4%25E6%258E%25A5%25E6%25A8%25A1%25E6%258B%259F/7][why mesh not pass]]
-
-  #+BEGIN_SRC 
-  ~/OpenFOAM-dev/src/dynamicMesh/polyTopoChange/polyTopoChange/modifyObject/  
-  #+END_SRC

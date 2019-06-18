@@ -38,9 +38,8 @@
 ##########################
 # OpenFoam Related Files #
 ##########################
-
-# OF
-
+OpenFOAM-6/
+ThirdParty-6/
 *~
 #*
 .#*
@@ -81,11 +80,11 @@ _region_*
 *.zip
 *.gz
 
-
 ##########################
-# OF ignore		 #
+# OF 6 ignorefile        #
 ##########################
-
+# OpenFOAM-6; try force include when necessary
+OpenFOAM-6/
 # git-ls-files --others --exclude-from=.git/info/exclude
 # Lines that start with '#' are comments.
 
@@ -173,8 +172,6 @@ doc/Doxygen/DTAGS
 # Ignore the test directory
 /tutorialsTest
 
-
 ##########################
 # Dealii		 #
 ##########################
-

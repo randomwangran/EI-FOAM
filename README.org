@@ -983,3 +983,9 @@ allowSystemOperations : Allowing user-supplied system call operations
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
    #+END_SRC
+
+    <2019-06-17 Mon> I had to say Win10 really sucks. What't the point
+    you can create a hotspot when you have Wifi connection, but you
+    can do this when there is no internet connection. I finally come
+    to a solution to buy a ethernet-usb adapter to connect SP to RPI.
+    Anyway, it works now.
