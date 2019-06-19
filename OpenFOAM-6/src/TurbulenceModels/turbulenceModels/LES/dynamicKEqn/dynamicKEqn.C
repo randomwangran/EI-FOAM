@@ -37,6 +37,30 @@ namespace LESModels
 
 template<class BasicTurbulenceModel>
 volScalarField dynamicKEqn<BasicTurbulenceModel>::Ck
+//-wr    The biggest difference I see is this coefficient Ck
+//-wr    In kEqn, Ck is a constant or a number defined by user, whereas in
+//-wr    this dynamic model a simpleFilter is applied to the velocity field
+//-wr    U.
+
+    //-kEqn           Ck_
+    //-kEqn           (
+    //-kEqn               dimensioned<scalar>::lookupOrAddToDict
+    //-kEqn               (
+    //-kEqn                   "Ck",
+    //-kEqn                   this->coeffDict_,
+    //-kEqn                   0.094
+    //-kEqn               )
+    //-kEqn           )
+
+
+    //-dynamicKEqn    const volScalarField Ck
+    //-dynamicKEqn    (
+    //-dynamicKEqn        simpleFilter_(0.5*(LL && MM))
+    //-dynamicKEqn       /(
+    //-dynamicKEqn            simpleFilter_(magSqr(MM))
+    //-dynamicKEqn          + dimensionedScalar("small", sqr(MM.dimensions()), vSmall)
+    //-dynamicKEqn        )
+    //-dynamicKEqn    );
 (
     const volSymmTensorField& D,
     const volScalarField& KK
