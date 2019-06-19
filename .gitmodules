@@ -1,0 +1,3 @@
+[submodule "OpenFOAM-6/applications/solvers/multiphase/interPlicFoam"]
+	path = OpenFOAM-6/applications/solvers/multiphase/interPlicFoam
+	url = git@github.com:daidezhi/interPlicFoam.git
