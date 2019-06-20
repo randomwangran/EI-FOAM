@@ -1,5 +1,6 @@
 * TOC                                                                   :TOC:
 - [[#the-openfoam-technology-primer][The OpenFOAM Technology Primer]]
+  - [[#share-the-folder-between-rpi-and-win10][share the folder between RPI and Win10]]
 - [[#playing-src][playing src]]
   - [[#pisofoam][pisoFoam]]
   - [[#simplefoam][simpleFoam]]
@@ -33,8 +34,11 @@
   the source code whenever possible and log all the experience that I
   have.
 
-  - I think better to use ParaView on SP to view the result not from RP.
+  - I think better to use ParaView on SP to view the result not from
+    RP.
 
+** TODO share the folder between RPI and Win10
+   
 * playing src
 
   I don't like to learn CFD by reading tons of tons equations. What I
