@@ -9,38 +9,12 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    object      blockMeshDict;
+    class       faceList;
+    location    "constant/polyMesh";
+    object      faces;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-geometry
-{
- 
-}
 
-vertices
-(
-);
-
-blocks
-(
-);
-
-edges
-(
-);
-
-faces
-(
-);
-
-
-defaultPatch
-{
-}
-
-boundary
-( 
-);
+0()
 
 // ************************************************************************* //
