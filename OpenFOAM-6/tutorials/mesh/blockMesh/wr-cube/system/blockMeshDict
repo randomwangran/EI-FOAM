@@ -15,8 +15,8 @@ FoamFile
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 geometry
 {
-  what's in this?
-    }
+ 
+}
 
 vertices
 (
@@ -43,18 +43,7 @@ defaultPatch
 
 boundary
 (
-
- inlet
- {
-   type    patch;
-   faces   ((v17 v18 v19 v16));
- }
-
- outlet
- {
-   type    patch;
-   faces   ((v12 v15 v14 v13));
- }
+ 
 );
 
 // ************************************************************************* //
