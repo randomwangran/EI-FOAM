@@ -1,5 +1,6 @@
 * TOC                                                                   :TOC:
-- [[#climbing-src][climbing src]]
+- [[#the-openfoam-technology-primer][The OpenFOAM Technology Primer]]
+- [[#playing-src][playing src]]
   - [[#pisofoam][pisoFoam]]
   - [[#simplefoam][simpleFoam]]
 - [[#tutorials][tutorials]]
@@ -22,7 +23,17 @@
 - [[#compiling-on-raspberry-pi-3][compiling on raspberry Pi 3]]
   - [[#i-am-sure-i-will-be-addictive-to-openfoam][I am sure I will be addictive to OpenFOAM]]
 
-* climbing src
+* The OpenFOAM Technology Primer
+
+  By Tomislav Maric, Jens Hopken, and Kyle Mooney.
+
+  Page: 1/458.
+
+  <2019-06-20 Thu> How about just following this book. Playing with
+  the source code whenever possible and log all the experience that I
+  have.
+
+* playing src
 
   I don't like to learn CFD by reading tons of tons equations. What I
   like to learn CFD is by watching those equations. I mean, by
@@ -37,7 +48,7 @@
 ** pisoFoam
 
    [[file:of-6/OpenFOAM-6-master/applications/solvers/incompressible/pisoFoam/pisoFoam.C::\\/%20M%20anipulation%20|][src]]
-
+   
 ** simpleFoam
 
    [[file:of-6/OpenFOAM-6-master/applications/solvers/incompressible/simpleFoam/simpleFoam.C::int%20main(int%20argc,%20char%20*argv%5B%5D)][src]]
@@ -891,7 +902,6 @@ maximum number in the current case (faces) there is 769512000 faces.
    Why they put this line here?
 
    
-
 * compiling on raspberry Pi 3
 
   Following [[http://openfoamwiki.net/index.php/Installation/Linux/OpenFOAM-dev/Raspbian][this instruction]].
