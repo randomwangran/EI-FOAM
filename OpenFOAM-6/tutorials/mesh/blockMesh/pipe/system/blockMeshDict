@@ -13,8 +13,9 @@ FoamFile
     object      blockMeshDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
-
-geometry
+//-wr    When reading this file, I have absolutely no idea what's the mesh is about.
+//-wr      How about this: build a cubic box?
+  geometry
 {
     cylinder
     {
