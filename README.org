@@ -28,7 +28,7 @@
 
   By Tomislav Maric, Jens Hopken, and Kyle Mooney.
 
-  Page: 1/458.
+  Page: 26/458.
 
   <2019-06-20 Thu> How about just following this book. Playing with
   the source code whenever possible and log all the experience that I
