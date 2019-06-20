@@ -8,9 +8,9 @@
 Build  : 6-71f2e7b5a2bc
 Exec   : blockMesh
 Date   : Jun 20 2019
-Time   : 15:18:32
+Time   : 15:22:19
 Host   : "raspberrypi"
-PID    : 6884
+PID    : 7207
 I/O    : uncollated
 Case   : /home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube
 nProcs : 1
@@ -22,46 +22,19 @@ allowSystemOperations : Allowing user-supplied system call operations
 Create time
 
 Overriding DebugSwitches according to controlDict
+Deleting polyMesh directory
+    "/home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube/constant/polyMesh"
 Creating block mesh from
     "/home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube/system/blockMeshDict"
-Creating block edges
-Creating block faces
-Creating topology blocks
-Creating topology patches
 
-Creating block mesh topology
 
-Check topology
+--> FOAM FATAL IO ERROR: 
+Cannot find surface monkey in geometry
 
-	Basic statistics
-		Number of internal faces : 0
-		Number of boundary faces : 0
-		Number of defined boundary faces : 0
-		Number of undefined boundary faces : 0
-	Checking patch -> block consistency
+file: /home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube/system/blockMeshDict.vertices at line 23.
 
-Creating block offsets
-Creating merge list .
+    From function Foam::blockVertices::projectVertex::projectVertex(const Foam::dictionary&, Foam::label, const Foam::searchableSurfaces&, Foam::Istream&)
+    in file blockVertices/projectVertex/projectVertex.C at line 65.
 
-Creating polyMesh from blockMesh
-Creating points with scale 1
-Creating cells
-Creating patches
-
-There are no merge patch pairs edges
-
-Writing polyMesh
-----------------
-Mesh Information
-----------------
-  boundingBox: (0 0 0) (0 0 0)
-  nPoints: 0
-  nCells: 0
-  nFaces: 0
-  nInternalFaces: 0
-----------------
-Patches
-----------------
-
-End
+FOAM exiting
 
