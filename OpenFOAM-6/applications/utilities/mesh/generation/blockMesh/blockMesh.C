@@ -46,8 +46,8 @@ Usage
       - \par -dict \<filename\>
         Specify alternative dictionary for the block mesh description.
 
-//-wr    My question is naive: how blockMesh build the mesh that I did int he commit:
-//-wr    '2ac9f5b9'
+        //-wr    My question is naive: how blockMesh build the mesh that I did int he commit:
+        //-wr    '2ac9f5b9'
 
 \*---------------------------------------------------------------------------*/
 
@@ -74,6 +74,7 @@ using namespace Foam;
 
 int main(int argc, char *argv[])
 {
+  //-wr-question What' argList? Are they just for the extra info?
     argList::noParallel();
     argList::addBoolOption
     (
@@ -272,7 +273,10 @@ int main(int argc, char *argv[])
             runTime.constant(),
             runTime
         ),
-        xferCopy(blocks.points()),           // could we re-use space?
+        xferCopy(blocks.points()),           //could we re-use space?
+                                              //-wr    Let's try to see if I
+                                              //-wr    can answer this
+                                              //-wr    question.
         blocks.cells(),
         blocks.patches(),
         blocks.patchNames(),
@@ -341,9 +345,10 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    zoneI = iter();
+                  zoneI = iter();
                 }
 
+                
                 forAll(blockCells, i)
                 {
                     zoneCells[zoneI].append(celli++);
