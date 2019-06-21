@@ -23,6 +23,7 @@
   - [[#allrun-shell][Allrun shell]]
 - [[#compiling-on-raspberry-pi-3][compiling on raspberry Pi 3]]
   - [[#i-am-sure-i-will-be-addictive-to-openfoam][I am sure I will be addictive to OpenFOAM]]
+  - [[#commit-message-rule][commit message rule]]
 
 * The OpenFOAM Technology Primer
 
@@ -1005,3 +1006,21 @@ allowSystemOperations : Allowing user-supplied system call operations
     can do this when there is no internet connection. I finally come
     to a solution to buy a ethernet-usb adapter to connect SP to RPI.
     Anyway, it works now.
+
+
+** commit message rule
+
+   - [add question] new question           kbd
+                                           q
+
+   - [answer question] answer question     kbd
+                                           a
+
+   - [source code]
+
+   - [doc] add note in README.org
+
+     
+                                            
+     
+
