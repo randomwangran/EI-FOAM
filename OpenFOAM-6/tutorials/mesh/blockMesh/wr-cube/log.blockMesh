@@ -8,9 +8,9 @@
 Build  : 6-71f2e7b5a2bc
 Exec   : blockMesh
 Date   : Jun 21 2019
-Time   : 14:00:18
+Time   : 15:29:21
 Host   : "raspberrypi"
-PID    : 1628
+PID    : 7745
 I/O    : uncollated
 Case   : /home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube
 nProcs : 1
