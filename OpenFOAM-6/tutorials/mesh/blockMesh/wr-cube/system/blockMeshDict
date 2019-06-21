@@ -13,6 +13,7 @@ FoamFile
     object      blockMeshDict;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+//-wr    /home/pi/OpenFOAM/OpenFOAM-6/src/mesh/blockMesh/blockMesh/blockMesh.H
 geometry
 {
 }
