@@ -1,0 +1,3 @@
+wr-blockMesh.C
+
+EXE = $(FOAM_APPBIN)/wr-blockMesh
