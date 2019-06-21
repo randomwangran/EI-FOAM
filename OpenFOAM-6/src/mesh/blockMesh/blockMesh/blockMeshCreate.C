@@ -70,9 +70,9 @@ void Foam::blockMesh::createPoints() const
             Info<< "    Block " << blocki << " cell size :" << nl
                 << "     wr-i : " << scaleFactor_*diStart << " .. "
                 << scaleFactor_*diFinal << nl
-                << "        j : " << scaleFactor_*djStart << " .. "
+                << "     wr-j : " << scaleFactor_*djStart << " .. "
                 << scaleFactor_*djFinal << nl
-                << "        k : " << scaleFactor_*dkStart << " .. "
+                << "     wr-k : " << scaleFactor_*dkStart << " .. "
                 << scaleFactor_*dkFinal << nl
                 << endl;
         }
