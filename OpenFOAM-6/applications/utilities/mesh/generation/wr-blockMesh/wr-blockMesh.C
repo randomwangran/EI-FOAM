@@ -426,7 +426,7 @@ int main(int argc, char *argv[])
         const polyPatchList& patches = mesh.boundaryMesh();
 
         Info<< "----------------" << nl
-            << "Mesh Information" << nl
+            << "What hack you want to play with Mesh Information?" << nl
             << "----------------" << nl
             << "  " << "boundingBox: " << boundBox(mesh.points()) << nl
             << "  " << "nPoints: " << mesh.nPoints() << nl
