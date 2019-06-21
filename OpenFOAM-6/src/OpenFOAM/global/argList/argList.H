@@ -33,6 +33,7 @@ Description
     \verbatim
         program -listFiles \( *.txt \)
     \endverbatim
+    //-wr-question Which program uses this argument list (-listFiles)?
     would create a stringList:
     \verbatim
         ( "file1.txt" "file2.txt" ... "fileN.txt" )
