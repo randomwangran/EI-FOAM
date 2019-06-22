@@ -8,9 +8,9 @@
 Build  : 6-71f2e7b5a2bc
 Exec   : wr-blockMesh
 Date   : Jun 22 2019
-Time   : 13:48:52
+Time   : 13:52:34
 Host   : "raspberrypi"
-PID    : 6834
+PID    : 7105
 I/O    : uncollated
 Case   : /home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube
 nProcs : 1
@@ -52,9 +52,9 @@ Creating merge list .
 Creating polyMesh from blockMesh
 Creating points with scale 1
     Block 0 cell size :
-     wr-i : 0.5 .. 0.5
-     wr-j : 0.5 .. 0.5
-     wr-k : 0.333333 .. 0.666667
+     wr-i : 1 .. 1
+     wr-j : inf .. 1.41421
+     wr-k : inf .. 1.41421
 
 Creating cells
 Creating patches
@@ -65,15 +65,15 @@ Writing polyMesh
 ----------------
 What hack you want to play with Mesh Information?
 ----------------
-  boundingBox: (0 0 0) (1 1 1)
-  nPoints: 27
-  nCells: 8
-  nFaces: 36
-  nInternalFaces: 12
+  boundingBox: (0 1 1) (1 1 1)
+  nPoints: 2
+  nCells: 0
+  nFaces: 0
+  nInternalFaces: 0
 ----------------
 Patches
 ----------------
-  patch 0 (start: 12 size: 24) name: defaultFaces
+  patch 0 (start: 0 size: 0) name: defaultFaces
 
 End
 
