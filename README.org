@@ -39,7 +39,12 @@
     RP.
 
 ** TODO share the folder between RPI and Win10
+   <2019-06-22 Sat> I did some experiments using samba but could not
+   find on Win 10. It might be the problem with the ethernet's
+   adapter.
    
+   So, tweak with VNC might be a solution.
+
 * playing src
 
   I don't like to learn CFD by reading tons of tons equations. What I
