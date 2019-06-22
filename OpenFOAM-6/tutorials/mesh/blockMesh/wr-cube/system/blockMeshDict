@@ -20,14 +20,15 @@ geometry
 
 vertices
 (
+ (0 1 1)  //h 
  (0 0 0)  //a 
  (1 0 0)  //b
+ (1 1 1)  //g 
  (1 1 0)  //c
  (0 1 0)  //d 
  (0 0 1)  //e
  (1 0 1)  //f
- (1 1 1)  //g 
- (0 1 1)  //h
+
 
  //-wr    Somehow different from the real output:
  //-wr    8((0 0 0) (1 0 0) (0 1 0) (1 1 0) (0 0 1) (1 0 1) (0 1 1) (1 1 1))
@@ -38,8 +39,8 @@ vertices
 
 blocks
 (
- hex (0 1 2 3 4 5 6 7) (1 1 1) simpleGrading (1 1 1)
- //-wr    hex (0 1 2 3 4 5 6 7) (1 1 1) monkey (1 1 1)
+ //-wr    hex (0 1 2 3 4 5 6 7) (1 1 1) simpleGrading (1 1 1)
+ hex (0 1 2 3 4 5 6 7) (1 1 1) monkey (1 1 1)
 
         //-wr    "                 7 ---- 6
         //-wr    "            f5   |\     |\   f3
