@@ -8,9 +8,9 @@
 Build  : 6-71f2e7b5a2bc
 Exec   : wr-blockMesh
 Date   : Jun 22 2019
-Time   : 15:03:32
+Time   : 15:25:19
 Host   : "raspberrypi"
-PID    : 10194
+PID    : 11122
 I/O    : uncollated
 Case   : /home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube
 nProcs : 1
@@ -32,18 +32,14 @@ Creating topology blocks
 --> FOAM Warning : 
     From function Foam::vector Foam::cellModel::centre(const labelList&, const pointField&) const
     in file meshes/meshShapes/cellModel/cellModel.C at line 70
-    zero or negative pyramid volume: -0.0833333 for face 0
---> FOAM Warning : 
-    From function Foam::vector Foam::cellModel::centre(const labelList&, const pointField&) const
-    in file meshes/meshShapes/cellModel/cellModel.C at line 70
-    zero or negative pyramid volume: -0.0833333 for face 2
+    zero or negative pyramid volume: -0.166667 for face 2
 
 
 --> FOAM FATAL IO ERROR: 
 Block hex (0 1 2 3 4 5 6 7) (1 1 1) simpleGrading (1(1) 1(1) 1(1)) has inward-pointing faces
-    4(0 3 2 1) 4(4 5 6 7) 
+    4(0 1 5 4) 4(3 7 6 2) 
 
-file: /home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube/system/blockMeshDict.blocks at line 43.
+file: /home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube/system/blockMeshDict.blocks at line 42.
 
     From function void Foam::blockDescriptor::check(const Foam::Istream&)
     in file blockDescriptor/blockDescriptor.C at line 89.
