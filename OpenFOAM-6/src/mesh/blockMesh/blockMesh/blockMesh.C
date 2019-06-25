@@ -21,6 +21,12 @@ License
     You should have received a copy of the GNU General Public License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
+
+    what is the relation between
+    /applications/utilities/mesh/generation/blockMesh/blockMesh.C
+
+     and
+     /src/mesh/blockMesh/blockMesh/blockMesh.C ?
 \*---------------------------------------------------------------------------*/
 
 #include "blockMesh.H"
