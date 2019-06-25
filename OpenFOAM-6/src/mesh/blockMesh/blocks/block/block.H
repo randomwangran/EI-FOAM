@@ -129,7 +129,8 @@ public:
         );
 
         //- Construct from a block definition
-        block(const blockDescriptor&);
+        //-wr    my tweak (ba19fe42ce3a05ac5004f8874344bee6e7ca9da7) is construct from this?
+          block(const blockDescriptor&);
 
         //- Clone
         autoPtr<block> clone() const
