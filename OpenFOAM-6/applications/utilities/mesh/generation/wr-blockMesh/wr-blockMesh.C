@@ -267,22 +267,22 @@ int main(int argc, char *argv[])
     word defaultFacesType = emptyPolyPatch::typeName;
     polyMesh mesh
     (
-        IOobject
-        (
-            regionName,
-            runTime.constant(),
-            runTime
-        ),
-        xferCopy(blocks.points()),           //could we re-use space?
-                                              //-wr    Let's try to see if I
-                                              //-wr    can answer this
-                                              //-wr    question.
-        //-wr    blocks.cells(),
-        //-wr    blocks.patches(),
-        //-wr    blocks.patchNames(),
-        //-wr    blocks.patchDicts(),
-        //-wr    defaultFacesName,
-        defaultFacesType
+     IOobject
+     (
+      regionName,
+      runTime.constant(),
+      runTime
+      ),
+     xferCopy(blocks.points()),           //could we re-use space?
+     //-wr    Let's try to see if I
+     //-wr    can answer this
+     //-wr    question.
+     blocks.cells(),
+     blocks.patches(),
+     blocks.patchNames(),
+     blocks.patchDicts(),
+     defaultFacesName,
+     defaultFacesType
     );
 
 
