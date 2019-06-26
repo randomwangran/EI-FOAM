@@ -273,10 +273,15 @@ int main(int argc, char *argv[])
             runTime.constant(),
             runTime
         ),
-        xferCopy(blocks.points()),           //could we re-use space?
+        //-wr    xferCopy(blocks.points()),
+        blocks.points(),
+                                             //could we re-use space?
                                               //-wr    Let's try to see if I
                                               //-wr    can answer this
                                               //-wr    question.
+
+        //-wr    Here's issue: why not just blocks.points()?
+        
         blocks.cells(),
         blocks.patches(),
         blocks.patchNames(),
