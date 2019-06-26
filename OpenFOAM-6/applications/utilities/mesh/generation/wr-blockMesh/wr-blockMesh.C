@@ -277,11 +277,11 @@ int main(int argc, char *argv[])
                                               //-wr    Let's try to see if I
                                               //-wr    can answer this
                                               //-wr    question.
-        blocks.cells(),
-        blocks.patches(),
-        blocks.patchNames(),
-        blocks.patchDicts(),
-        defaultFacesName,
+        //-wr    blocks.cells(),
+        //-wr    blocks.patches(),
+        //-wr    blocks.patchNames(),
+        //-wr    blocks.patchDicts(),
+        //-wr    defaultFacesName,
         defaultFacesType
     );
 
