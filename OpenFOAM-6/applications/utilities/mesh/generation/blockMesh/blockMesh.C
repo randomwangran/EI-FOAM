@@ -273,8 +273,8 @@ int main(int argc, char *argv[])
             runTime.constant(),
             runTime
         ),
-        //-wr    xferCopy(blocks.points()),
-        blocks.points(),
+        xferCopy(blocks.points()),
+        //-wr    blocks.points(),
                                              //could we re-use space?
                                               //-wr    Let's try to see if I
                                               //-wr    can answer this

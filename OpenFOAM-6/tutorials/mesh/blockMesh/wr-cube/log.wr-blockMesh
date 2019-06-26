@@ -7,10 +7,10 @@
 \*---------------------------------------------------------------------------*/
 Build  : 6-71f2e7b5a2bc
 Exec   : wr-blockMesh
-Date   : Jun 22 2019
-Time   : 15:28:29
+Date   : Jun 26 2019
+Time   : 15:30:12
 Host   : "raspberrypi"
-PID    : 11571
+PID    : 6975
 I/O    : uncollated
 Case   : /home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube
 nProcs : 1
@@ -22,6 +22,8 @@ allowSystemOperations : Allowing user-supplied system call operations
 Create time
 
 Overriding DebugSwitches according to controlDict
+Deleting polyMesh directory
+    "/home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube/constant/polyMesh"
 Creating block mesh from
     "/home/pi/OpenFOAM/OpenFOAM-6/tutorials/mesh/blockMesh/wr-cube/system/blockMeshDict"
 Creating block edges
