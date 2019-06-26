@@ -82,7 +82,10 @@ class blockDescriptor
 {
     // Private data
 
+
         //- Reference to point field defining the block mesh
+      
+        //-wr    typedef vectorField pointField;
         const pointField& vertices_;
 
         //- Reference to a list of block edges
@@ -113,6 +116,8 @@ class blockDescriptor
     // Private Member Functions
 
         //- Check block has outward-pointing faces
+  
+  //-wr    check this out, can you figure out how OF check the points?
         void check(const Istream& is);
 
         //- Calculate the points and weights for the specified edge.
@@ -162,7 +167,9 @@ public:
             const pointField& vertices,
             const blockEdgeList&,
             const blockFaceList&,
+            
             Istream&
+            //-wr    what is Istream?
         );
 
 
