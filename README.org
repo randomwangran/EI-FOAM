@@ -5,6 +5,7 @@
   - [[#pisofoam][pisoFoam]]
   - [[#simplefoam][simpleFoam]]
 - [[#tutorials][tutorials]]
+  - [[#io][IO]]
   - [[#pip][pip]]
   - [[#dambreak][damBreak]]
 - [[#why-mesh-not-pass][why mesh not pass]]
@@ -99,7 +100,29 @@
 
 *** TODO read J. Anderson's babel
 * tutorials
-** TODO pip
+  
+  | folder           | State   |
+  |------------------+---------|
+  | DNS              |         |
+  | IO               | [Doing] |
+  | basic            |         |
+  | combustion       |         |
+  | compressible     |         |
+  | discreteMethods  |         |
+  | electromagnetics |         |
+  | financial        |         |
+  | heat             |         |
+  | Transfer         |         |
+  | incompressible   |         |
+  | lagrangian       |         |
+  | mesh             |         |
+  | multiphase       |         |
+  | resources        |         |
+  | stressAnalysis   |         |
+** TODO IO
+   
+   Well, this is quit complicated... so many files generated.
+** pip
 *** what is the case?
     A 2D line rotation.
 
@@ -116,8 +139,7 @@
 
     #+DOWNLOADED: /tmp/screenshot.png @ 2019-02-28 23:19:54
     [[file:attached_images/screenshot_2019-02-28_23-19-54.png]]
-
-** TODO damBreak
+** damBreak
    [[https://cfd.direct/openfoam/user-guide/v6-damBreak/][web doc]]
 *** what is the case?
 
@@ -173,7 +195,6 @@
 	   removeCase $case
        done
      #+END_SRC
-
 * [[http://cfd-china.com/topic/2191/openfoam%E5%91%A8%E6%9C%9F%E8%BE%B9%E7%95%8C%E7%94%9F%E6%88%90%E4%B8%8D%E6%88%90%E5%8A%9F-cyclic%E7%9A%84%E9%97%AE%E9%A2%98][why mesh not pass]]
 ** DONE initial asking
    I am using OF-dev version (don't know exactly the date I downloaded
