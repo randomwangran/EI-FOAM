@@ -51,11 +51,12 @@ Usage
 
 \*---------------------------------------------------------------------------*/
 
+
 #include "Time.H"
 #include "IOdictionary.H"
 #include "IOPtrList.H"
 
-#include "wr-blockMesh.H"
+#include "blockMesh.H"
 #include "attachPolyTopoChanger.H"
 #include "polyTopoChange.H"
 #include "emptyPolyPatch.H"
@@ -75,49 +76,49 @@ using namespace Foam;
 int main(int argc, char *argv[])
 {
   //-wr-question What' argList? Are they just for the extra info?
-    argList::noParallel();
-    argList::addBoolOption
+  argList::noParallel();
+  argList::addBoolOption
     (
-        "blockTopology",
-        "write block edges and centres as .obj files"
-    );
-    argList::addBoolOption
+     "blockTopology",
+     "write block edges and centres as .obj files"
+     );
+  argList::addBoolOption
     (
-        "noClean",
-        "keep the existing files in the polyMesh"
-    );
-    argList::addOption
+     "noClean",
+     "keep the existing files in the polyMesh"
+     );
+  argList::addOption
     (
-        "dict",
-        "file",
-        "specify alternative dictionary for the blockMesh description"
-    );
+     "dict",
+     "file",
+     "specify alternative dictionary for the blockMesh description"
+     );
 
-    //-wr    I was shock by the ability by the ascii's power!
-    //-wr      Look at this, you can even draw a complex cubic using ASCII!!!
-    argList::addNote
+  //-wr    I was shock by the ability by the ascii's power!
+  //-wr      Look at this, you can even draw a complex cubic using ASCII!!!
+  argList::addNote
     (
      "Block description\n"
-     "\n"
-     "  For a given block, the correspondence between the ordering of\n"
-     "  vertex labels and face labels is shown below.\n"
-     "  For vertex numbering in the sequence 0 to 7 (block, centre):\n"
-     "    faces 0 (f0) and 1 are left and right, respectively;\n"
-     "    faces 2 and 3 are front and back; \n"
-     "    and faces 4 and 5 are bottom and top::\n"
-     "\n"
-     "                 7 ---- 6\n"
-     "            f5   |\\     |\\   f3\n"
-     "            |    | 4 ---- 5   \\\n"
-     "            |    3 |--- 2 |    \\\n"
-     "            |     \\|     \\|    f2\n"
-     "            f4     0 ---- 1\n"
-     "\n"
-     "       Z         f0 ----- f1\n"
-     "       |  Y\n"
-     "       | /\n"
-     "       O --- X\n"
-     );
+        "\n"
+        "  For a given block, the correspondence between the ordering of\n"
+        "  vertex labels and face labels is shown below.\n"
+        "  For vertex numbering in the sequence 0 to 7 (block, centre):\n"
+        "    faces 0 (f0) and 1 are left and right, respectively;\n"
+        "    faces 2 and 3 are front and back; \n"
+        "    and faces 4 and 5 are bottom and top::\n"
+        "\n"
+        "                 7 ---- 6\n"
+        "            f5   |\\     |\\   f3\n"
+        "            |    | 4 ---- 5   \\\n"
+        "            |    3 |--- 2 |    \\\n"
+        "            |     \\|     \\|    f2\n"
+        "            f4     0 ---- 1\n"
+        "\n"
+        "       Z         f0 ----- f1\n"
+        "       |  Y\n"
+        "       | /\n"
+        "       O --- X\n"
+    );
 
     #include "addRegionOption.H"
     #include "setRootCase.H"
@@ -267,23 +268,163 @@ int main(int argc, char *argv[])
     word defaultFacesType = emptyPolyPatch::typeName;
     polyMesh mesh
     (
-     IOobject
-     (
-      regionName,
-      runTime.constant(),
-      runTime
-      ),
-     xferCopy(blocks.points()),           //could we re-use space?
-     //-wr    Let's try to see if I
-     //-wr    can answer this
-     //-wr    question.
-     blocks.cells(),
-     blocks.patches(),
-     blocks.patchNames(),
-     blocks.patchDicts(),
-     defaultFacesName,
-     defaultFacesType
+        IOobject
+        (
+            regionName,
+            runTime.constant(),
+            runTime
+        ),
+        xferCopy(blocks.points()),
+        //-wr    blocks.points(),
+                                             //could we re-use space?
+                                              //-wr    Let's try to see if I
+                                              //-wr    can answer this
+                                              //-wr    question.
+
+        //-wr    Here's issue: why not just blocks.points()?
+        
+        blocks.cells(),
+        blocks.patches(),
+        blocks.patchNames(),
+        blocks.patchDicts(),
+        defaultFacesName,
+        defaultFacesType
     );
+
+
+    // Read in a list of dictionaries for the merge patch pairs
+    if (meshDict.found("mergePatchPairs"))
+    {
+        List<Pair<word>> mergePatchPairs
+        (
+            meshDict.lookup("mergePatchPairs")
+        );
+
+        #include "mergePatchPairs.H"
+    }
+    else
+    {
+        Info<< nl << "There are no merge patch pairs edges" << endl;
+    }
+
+
+    // Set any cellZones (note: cell labelling unaffected by above
+    // mergePatchPairs)
+
+    label nZones = blocks.numZonedBlocks();
+
+    if (nZones > 0)
+    {
+        Info<< nl << "Adding cell zones" << endl;
+
+        // Map from zoneName to cellZone index
+        HashTable<label> zoneMap(nZones);
+
+        // Cells per zone.
+        List<DynamicList<label>> zoneCells(nZones);
+
+        // Running cell counter
+        label celli = 0;
+
+        // Largest zone so far
+        label freeZoneI = 0;
+
+        forAll(blocks, blockI)
+        {
+            const block& b = blocks[blockI];
+            const List<FixedList<label, 8>> blockCells = b.cells();
+            const word& zoneName = b.zoneName();
+
+            if (zoneName.size())
+            {
+                HashTable<label>::const_iterator iter = zoneMap.find(zoneName);
+
+                label zoneI;
+
+                if (iter == zoneMap.end())
+                {
+                    zoneI = freeZoneI++;
+
+                    Info<< "    " << zoneI << '\t' << zoneName << endl;
+
+                    zoneMap.insert(zoneName, zoneI);
+                }
+                else
+                {
+                  zoneI = iter();
+                }
+
+                
+                forAll(blockCells, i)
+                {
+                    zoneCells[zoneI].append(celli++);
+                }
+            }
+            else
+            {
+                celli += b.cells().size();
+            }
+        }
+
+
+        List<cellZone*> cz(zoneMap.size());
+
+        forAllConstIter(HashTable<label>, zoneMap, iter)
+        {
+            label zoneI = iter();
+
+            cz[zoneI] = new cellZone
+            (
+                iter.key(),
+                zoneCells[zoneI].shrink(),
+                zoneI,
+                mesh.cellZones()
+            );
+        }
+
+        mesh.pointZones().setSize(0);
+        mesh.faceZones().setSize(0);
+        mesh.cellZones().setSize(0);
+        mesh.addZones(List<pointZone*>(0), List<faceZone*>(0), cz);
+    }
+
+
+    // Detect any cyclic patches and force re-ordering of the faces
+    {
+        const polyPatchList& patches = mesh.boundaryMesh();
+        bool hasCyclic = false;
+        forAll(patches, patchi)
+        {
+            if (isA<cyclicPolyPatch>(patches[patchi]))
+            {
+                hasCyclic = true;
+                break;
+            }
+        }
+
+        if (hasCyclic)
+        {
+            Info<< nl << "Detected cyclic patches; ordering boundary faces"
+                << endl;
+            const word oldInstance = mesh.instance();
+            polyTopoChange meshMod(mesh);
+            meshMod.changeMesh(mesh, false);
+            mesh.setInstance(oldInstance);
+        }
+    }
+
+
+    // Set the precision of the points data to 10
+    IOstream::defaultPrecision(max(10u, IOstream::defaultPrecision()));
+
+    Info<< nl << "Writing polyMesh" << endl;
+    mesh.removeFiles();
+    if (!mesh.write())
+    {
+        FatalErrorInFunction
+            << "Failed writing polyMesh."
+            << exit(FatalError);
+    }
 
 
     // Write summary
@@ -291,7 +432,7 @@ int main(int argc, char *argv[])
         const polyPatchList& patches = mesh.boundaryMesh();
 
         Info<< "----------------" << nl
-            << "What hack you want to play with Mesh Information?" << nl
+            << "wr-block-Mesh Information" << nl
             << "----------------" << nl
             << "  " << "boundingBox: " << boundBox(mesh.points()) << nl
             << "  " << "nPoints: " << mesh.nPoints() << nl

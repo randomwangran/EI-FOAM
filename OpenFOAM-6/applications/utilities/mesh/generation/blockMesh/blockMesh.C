@@ -431,7 +431,7 @@ int main(int argc, char *argv[])
         const polyPatchList& patches = mesh.boundaryMesh();
 
         Info<< "----------------" << nl
-            << "Mesh Information" << nl
+            << "wr-Mesh Information" << nl
             << "----------------" << nl
             << "  " << "boundingBox: " << boundBox(mesh.points()) << nl
             << "  " << "nPoints: " << mesh.nPoints() << nl
