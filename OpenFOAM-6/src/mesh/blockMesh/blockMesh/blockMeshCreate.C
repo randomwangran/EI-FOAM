@@ -22,7 +22,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 \*---------------------------------------------------------------------------*/
-
+//-wr    Not sure how this file is included to the main function to build the points.
 #include "blockMesh.H"
 #include "cellModeller.H"
 
