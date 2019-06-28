@@ -70,11 +70,11 @@ void Foam::blockMesh::createPoints() const
             // those wr-i,j,k will not be achieved since this
             // blockMeshCreate.C is never built into the system.
             Info<< "    Block " << blocki << " cell size :" << nl
-                << "     wr-i : " << scaleFactor_*diStart << " .. "
+                << "     wr-try--i : " << scaleFactor_*diStart << " .. "
                 << scaleFactor_*diFinal << nl
-                << "     wr-j : " << scaleFactor_*djStart << " .. "
+                << "     wr-try--j : " << scaleFactor_*djStart << " .. "
                 << scaleFactor_*djFinal << nl
-                << "     wr-k : " << scaleFactor_*dkStart << " .. "
+                << "     wr-try--k : " << scaleFactor_*dkStart << " .. "
                 << scaleFactor_*dkFinal << nl
                 << endl;
         }
