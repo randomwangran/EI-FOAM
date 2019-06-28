@@ -220,46 +220,46 @@ int main(int argc, char *argv[])
     blockMesh blocks(meshDict, regionName);
 
 
-    if (args.optionFound("blockTopology"))
-    {
-        // Write mesh as edges.
-        {
-            fileName objMeshFile("blockTopology.obj");
-
-            OFstream str(runTime.path()/objMeshFile);
-
-            Info<< nl << "Dumping block structure as Lightwave obj format"
-                << " to " << objMeshFile << endl;
-
-            blocks.writeTopology(str);
-        }
-
-        // Write centres of blocks
-        {
-            fileName objCcFile("blockCentres.obj");
-
-            OFstream str(runTime.path()/objCcFile);
-
-            Info<< nl << "Dumping block centres as Lightwave obj format"
-                << " to " << objCcFile << endl;
-
-            const polyMesh& topo = blocks.topology();
-
-            const pointField& cellCentres = topo.cellCentres();
-
-            forAll(cellCentres, celli)
-            {
-                // point cc = b.blockShape().centre(b.points());
-                const point& cc = cellCentres[celli];
-
-                str << "v " << cc.x() << ' ' << cc.y() << ' ' << cc.z() << nl;
-            }
-        }
-
-        Info<< nl << "end" << endl;
-
-        return 0;
-    }
+    //-wr    if (args.optionFound("blockTopology"))
+    //-wr    {
+    //-wr        // Write mesh as edges.
+    //-wr        {
+    //-wr            fileName objMeshFile("blockTopology.obj");
+    //-wr    
+    //-wr            OFstream str(runTime.path()/objMeshFile);
+    //-wr    
+    //-wr            Info<< nl << "Dumping block structure as Lightwave obj format"
+    //-wr                << " to " << objMeshFile << endl;
+    //-wr    
+    //-wr            blocks.writeTopology(str);
+    //-wr        }
+    //-wr    
+    //-wr        // Write centres of blocks
+    //-wr        {
+    //-wr            fileName objCcFile("blockCentres.obj");
+    //-wr    
+    //-wr            OFstream str(runTime.path()/objCcFile);
+    //-wr    
+    //-wr            Info<< nl << "Dumping block centres as Lightwave obj format"
+    //-wr                << " to " << objCcFile << endl;
+    //-wr    
+    //-wr            const polyMesh& topo = blocks.topology();
+    //-wr    
+    //-wr            const pointField& cellCentres = topo.cellCentres();
+    //-wr    
+    //-wr            forAll(cellCentres, celli)
+    //-wr            {
+    //-wr                // point cc = b.blockShape().centre(b.points());
+    //-wr                const point& cc = cellCentres[celli];
+    //-wr    
+    //-wr                str << "v " << cc.x() << ' ' << cc.y() << ' ' << cc.z() << nl;
+    //-wr            }
+    //-wr        }
+    //-wr    
+    //-wr        Info<< nl << "end" << endl;
+    //-wr    
+    //-wr        return 0;
+    //-wr    }
 
 
     Info<< nl << "Creating polyMesh from blockMesh" << endl;
