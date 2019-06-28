@@ -172,29 +172,29 @@ int main(int argc, char *argv[])
         dictPath = runTime.system()/regionPath/dictName;
     }
 
-    if (!args.optionFound("noClean"))
-    {
-        fileName polyMeshPath
-        (
-            runTime.path()/runTime.constant()/regionPath/polyMesh::meshSubDir
-        );
-
-        if (exists(polyMeshPath))
-        {
-            if (exists(polyMeshPath/dictName))
-            {
-                Info<< "Not deleting polyMesh directory " << nl
-                    << "    " << polyMeshPath << nl
-                    << "    because it contains " << dictName << endl;
-            }
-            else
-            {
-                Info<< "Deleting polyMesh directory" << nl
-                    << "    " << polyMeshPath << endl;
-                rmDir(polyMeshPath);
-            }
-        }
-    }
+    //-wr    if (!args.optionFound("noClean"))
+    //-wr    {
+    //-wr        fileName polyMeshPath
+    //-wr        (
+    //-wr            runTime.path()/runTime.constant()/regionPath/polyMesh::meshSubDir
+    //-wr        );
+    //-wr    
+    //-wr        if (exists(polyMeshPath))
+    //-wr        {
+    //-wr            if (exists(polyMeshPath/dictName))
+    //-wr            {
+    //-wr                Info<< "Not deleting polyMesh directory " << nl
+    //-wr                    << "    " << polyMeshPath << nl
+    //-wr                    << "    because it contains " << dictName << endl;
+    //-wr            }
+    //-wr            else
+    //-wr            {
+    //-wr                Info<< "Deleting polyMesh directory" << nl
+    //-wr                    << "    " << polyMeshPath << endl;
+    //-wr                rmDir(polyMeshPath);
+    //-wr            }
+    //-wr        }
+    //-wr    }
 
     IOobject meshDictIO
     (
