@@ -264,7 +264,7 @@ int main(int argc, char *argv[])
 
     Info<< nl << "Creating polyMesh from blockMesh" << endl;
 
-    word defaultFacesName = "defaultFaces";
+    word defaultFacesName = "FacesWhat";
     word defaultFacesType = emptyPolyPatch::typeName;
     polyMesh mesh
     (
@@ -389,29 +389,29 @@ int main(int argc, char *argv[])
     }
 
 
-    // Detect any cyclic patches and force re-ordering of the faces
-    {
-        const polyPatchList& patches = mesh.boundaryMesh();
-        bool hasCyclic = false;
-        forAll(patches, patchi)
-        {
-            if (isA<cyclicPolyPatch>(patches[patchi]))
-            {
-                hasCyclic = true;
-                break;
-            }
-        }
-
-        if (hasCyclic)
-        {
-            Info<< nl << "Detected cyclic patches; ordering boundary faces"
-                << endl;
-            const word oldInstance = mesh.instance();
-            polyTopoChange meshMod(mesh);
-            meshMod.changeMesh(mesh, false);
-            mesh.setInstance(oldInstance);
-        }
-    }
+    //-wr    // Detect any cyclic patches and force re-ordering of the faces
+    //-wr    {
+    //-wr        const polyPatchList& patches = mesh.boundaryMesh();
+    //-wr        bool hasCyclic = false;
+    //-wr        forAll(patches, patchi)
+    //-wr        {
+    //-wr            if (isA<cyclicPolyPatch>(patches[patchi]))
+    //-wr            {
+    //-wr                hasCyclic = true;
+    //-wr                break;
+    //-wr            }
+    //-wr        }
+    //-wr    
+    //-wr        if (hasCyclic)
+    //-wr        {
+    //-wr            Info<< nl << "Detected cyclic patches; ordering boundary faces"
+    //-wr                << endl;
+    //-wr            const word oldInstance = mesh.instance();
+    //-wr            polyTopoChange meshMod(mesh);
+    //-wr            meshMod.changeMesh(mesh, false);
+    //-wr            mesh.setInstance(oldInstance);
+    //-wr        }
+    //-wr    }
 
 
     // Set the precision of the points data to 10
@@ -420,19 +420,20 @@ int main(int argc, char *argv[])
     Info<< nl << "Writing polyMesh" << endl;
     mesh.removeFiles();
     if (!mesh.write())
-    {
+      {
         FatalErrorInFunction
-            << "Failed writing polyMesh."
-            << exit(FatalError);
-    }
+          << "Failed writing polyMesh."
+          << exit(FatalError);
+      }
 
-
+    //-wr Because that's the first part of if-else statement.
+    //    If force deleted, it will not working as wished.
     // Write summary
     {
         const polyPatchList& patches = mesh.boundaryMesh();
 
         Info<< "----------------" << nl
-            << "wr-block-Mesh Information" << nl
+            << "wr-block-Mesh-test Information" << nl
             << "----------------" << nl
             << "  " << "boundingBox: " << boundBox(mesh.points()) << nl
             << "  " << "nPoints: " << mesh.nPoints() << nl
