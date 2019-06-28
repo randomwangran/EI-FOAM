@@ -150,6 +150,7 @@ const Foam::pointField& Foam::blockMesh::points() const
 {
     if (points_.empty())
     {
+      //-wr how the points build
         createPoints();
     }
 
