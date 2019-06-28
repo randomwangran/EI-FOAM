@@ -266,6 +266,8 @@ int main(int argc, char *argv[])
 
     word defaultFacesName = "FacesWhat";
     word defaultFacesType = emptyPolyPatch::typeName;
+
+    //-wr this is the important part yet not too much explicit methods you can find how the mesh is build.
     polyMesh mesh
     (
         IOobject
