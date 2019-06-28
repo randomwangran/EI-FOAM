@@ -292,20 +292,20 @@ int main(int argc, char *argv[])
     );
 
 
-    // Read in a list of dictionaries for the merge patch pairs
-    if (meshDict.found("mergePatchPairs"))
-    {
-        List<Pair<word>> mergePatchPairs
-        (
-            meshDict.lookup("mergePatchPairs")
-        );
-
-        #include "mergePatchPairs.H"
-    }
-    else
-    {
-        Info<< nl << "There are no merge patch pairs edges" << endl;
-    }
+    //-wr    // Read in a list of dictionaries for the merge patch pairs
+    //-wr    if (meshDict.found("mergePatchPairs"))
+    //-wr    {
+    //-wr        List<Pair<word>> mergePatchPairs
+    //-wr        (
+    //-wr            meshDict.lookup("mergePatchPairs")
+    //-wr        );
+    //-wr    
+    //-wr        #include "mergePatchPairs.H"
+    //-wr    }
+    //-wr    else
+    //-wr    {
+    //-wr        Info<< nl << "There are no merge patch pairs edges" << endl;
+    //-wr    }
 
 
     // Set any cellZones (note: cell labelling unaffected by above
