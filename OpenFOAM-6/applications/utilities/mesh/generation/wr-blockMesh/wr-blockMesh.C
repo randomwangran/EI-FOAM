@@ -311,82 +311,84 @@ int main(int argc, char *argv[])
     // Set any cellZones (note: cell labelling unaffected by above
     // mergePatchPairs)
 
-    label nZones = blocks.numZonedBlocks();
-
-    if (nZones > 0)
-    {
-        Info<< nl << "Adding cell zones" << endl;
-
-        // Map from zoneName to cellZone index
-        HashTable<label> zoneMap(nZones);
-
-        // Cells per zone.
-        List<DynamicList<label>> zoneCells(nZones);
-
-        // Running cell counter
-        label celli = 0;
-
-        // Largest zone so far
-        label freeZoneI = 0;
-
-        forAll(blocks, blockI)
-        {
-            const block& b = blocks[blockI];
-            const List<FixedList<label, 8>> blockCells = b.cells();
-            const word& zoneName = b.zoneName();
-
-            if (zoneName.size())
-            {
-                HashTable<label>::const_iterator iter = zoneMap.find(zoneName);
-
-                label zoneI;
-
-                if (iter == zoneMap.end())
-                {
-                    zoneI = freeZoneI++;
-
-                    Info<< "    " << zoneI << '\t' << zoneName << endl;
-
-                    zoneMap.insert(zoneName, zoneI);
-                }
-                else
-                {
-                  zoneI = iter();
-                }
-
-                
-                forAll(blockCells, i)
-                {
-                    zoneCells[zoneI].append(celli++);
-                }
-            }
-            else
-            {
-                celli += b.cells().size();
-            }
-        }
+    //-wr    label nZones = blocks.numZonedBlocks();
 
 
-        List<cellZone*> cz(zoneMap.size());
-
-        forAllConstIter(HashTable<label>, zoneMap, iter)
-        {
-            label zoneI = iter();
-
-            cz[zoneI] = new cellZone
-            (
-                iter.key(),
-                zoneCells[zoneI].shrink(),
-                zoneI,
-                mesh.cellZones()
-            );
-        }
-
-        mesh.pointZones().setSize(0);
-        mesh.faceZones().setSize(0);
-        mesh.cellZones().setSize(0);
-        mesh.addZones(List<pointZone*>(0), List<faceZone*>(0), cz);
-    }
+    //-wr what is the zone in OF?
+    //-wr    if (nZones > 0)
+    //-wr    {
+    //-wr        Info<< nl << "Adding cell zones" << endl;
+    //-wr    
+    //-wr        // Map from zoneName to cellZone index
+    //-wr        HashTable<label> zoneMap(nZones);
+    //-wr    
+    //-wr        // Cells per zone.
+    //-wr        List<DynamicList<label>> zoneCells(nZones);
+    //-wr    
+    //-wr        // Running cell counter
+    //-wr        label celli = 0;
+    //-wr    
+    //-wr        // Largest zone so far
+    //-wr        label freeZoneI = 0;
+    //-wr    
+    //-wr        forAll(blocks, blockI)
+    //-wr        {
+    //-wr            const block& b = blocks[blockI];
+    //-wr            const List<FixedList<label, 8>> blockCells = b.cells();
+    //-wr            const word& zoneName = b.zoneName();
+    //-wr    
+    //-wr            if (zoneName.size())
+    //-wr            {
+    //-wr                HashTable<label>::const_iterator iter = zoneMap.find(zoneName);
+    //-wr    
+    //-wr                label zoneI;
+    //-wr    
+    //-wr                if (iter == zoneMap.end())
+    //-wr                {
+    //-wr                    zoneI = freeZoneI++;
+    //-wr    
+    //-wr                    Info<< "    " << zoneI << '\t' << zoneName << endl;
+    //-wr    
+    //-wr                    zoneMap.insert(zoneName, zoneI);
+    //-wr                }
+    //-wr                else
+    //-wr                {
+    //-wr                  zoneI = iter();
+    //-wr                }
+    //-wr    
+    //-wr                
+    //-wr                forAll(blockCells, i)
+    //-wr                {
+    //-wr                    zoneCells[zoneI].append(celli++);
+    //-wr                }
+    //-wr            }
+    //-wr            else
+    //-wr            {
+    //-wr                celli += b.cells().size();
+    //-wr            }
+    //-wr        }
+    //-wr    
+    //-wr    
+    //-wr        List<cellZone*> cz(zoneMap.size());
+    //-wr    
+    //-wr        forAllConstIter(HashTable<label>, zoneMap, iter)
+    //-wr        {
+    //-wr            label zoneI = iter();
+    //-wr    
+    //-wr            cz[zoneI] = new cellZone
+    //-wr            (
+    //-wr                iter.key(),
+    //-wr                zoneCells[zoneI].shrink(),
+    //-wr                zoneI,
+    //-wr                mesh.cellZones()
+    //-wr            );
+    //-wr        }
+    //-wr    
+    //-wr        mesh.pointZones().setSize(0);
+    //-wr        mesh.faceZones().setSize(0);
+    //-wr        mesh.cellZones().setSize(0);
+    //-wr        mesh.addZones(List<pointZone*>(0), List<faceZone*>(0), cz);
+    //-wr    }
 
 
     //-wr    // Detect any cyclic patches and force re-ordering of the faces
@@ -415,7 +417,7 @@ int main(int argc, char *argv[])
 
 
     // Set the precision of the points data to 10
-    IOstream::defaultPrecision(max(10u, IOstream::defaultPrecision()));
+    //-wr    IOstream::defaultPrecision(max(10u, IOstream::defaultPrecision()));
 
     Info<< nl << "Writing polyMesh" << endl;
     mesh.removeFiles();
