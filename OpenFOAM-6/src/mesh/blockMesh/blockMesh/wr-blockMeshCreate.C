@@ -67,6 +67,8 @@ void Foam::blockMesh::createPoints() const
             label vkn = blocks[blocki].pointLabel(0, 0, density.z());
             scalar dkFinal = mag(blockPoints[vkn] - blockPoints[vknM1]);
 
+            // those wr-i,j,k will not be achieved since this
+            // blockMeshCreate.C is never built into the system.
             Info<< "    Block " << blocki << " cell size :" << nl
                 << "     wr-i : " << scaleFactor_*diStart << " .. "
                 << scaleFactor_*diFinal << nl

@@ -37,6 +37,10 @@ SourceFiles
     blockMeshMerge.C
     blockMeshTopology.C
 
+//-wr    These source code will eventually becomes:
+//-wr    libblockMesh.so
+//-wr    I guess there's rule to describe this feature.
+//-wr    What's the purpose of building like this?
 \*---------------------------------------------------------------------------*/
 
 #ifndef blockMesh_H
