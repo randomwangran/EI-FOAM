@@ -106,6 +106,7 @@ class blockMesh
         //- The merge points information
         labelList mergeList_;
 
+        //wr what is mutable?
         mutable pointField points_;
 
         mutable cellShapeList cells_;
