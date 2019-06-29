@@ -17,13 +17,25 @@ FoamFile
 
 application     icoUncoupledKinematicParcelFoam;
 
+//-wr when the simulation is running, there's only one folders:
+//-processors4. By double checking, I found this solver is running
+//-with 4 cores. Massive improvement for file system.
+
+// how to run it? revise the Allrun scripts:
+//-wr    runApplication decomposePar -fileHandler collated
+//-wr    runParallel $application -fileHandler collated
+
+//-wr    when finish using those to reconstuct:
+//-wr    runApplication reconstructPar -latestTime -fileHandler collated
+
 startFrom       latestTime;
 
 startTime       0;
 
-stopAt          writeNow;
+//-wr    stopAt          writeNow;
+stopAt          endTime;
 
-endTime         0.25;
+endTime         2.5;
 
 deltaT          5e-5;
 
