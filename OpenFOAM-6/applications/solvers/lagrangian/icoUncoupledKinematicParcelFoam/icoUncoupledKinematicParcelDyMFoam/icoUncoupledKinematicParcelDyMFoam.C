@@ -30,6 +30,14 @@ Description
 
     Uses a pre-calculated velocity field to evolve the cloud.
 
+    //-wr    What is passive transport?
+    //-wr    What is particle cloud?
+    //-wr    What is single kinematic?
+    //-wr    
+    //-wr    How the mesh move?
+    //-wr    How is the topology? How does they change?
+    //-wr    
+    //-wr    How to pre-calculate a velocity field?
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
