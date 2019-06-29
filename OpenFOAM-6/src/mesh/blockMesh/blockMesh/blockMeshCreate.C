@@ -68,11 +68,11 @@ void Foam::blockMesh::createPoints() const
             scalar dkFinal = mag(blockPoints[vkn] - blockPoints[vknM1]);
 
             Info<< "    Block " << blocki << " cell size :" << nl
-                << "     wr-i : " << scaleFactor_*diStart << " .. "
+                << "     wr-test-i : " << scaleFactor_*diStart << " .. "
                 << scaleFactor_*diFinal << nl
-                << "     wr-j : " << scaleFactor_*djStart << " .. "
+                << "     wr-test-j : " << scaleFactor_*djStart << " .. "
                 << scaleFactor_*djFinal << nl
-                << "     wr-k : " << scaleFactor_*dkStart << " .. "
+                << "     wr-test-k : " << scaleFactor_*dkStart << " .. "
                 << scaleFactor_*dkFinal << nl
                 << endl;
         }

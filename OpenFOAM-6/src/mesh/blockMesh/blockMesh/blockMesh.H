@@ -41,6 +41,7 @@ SourceFiles
 //-wr    libblockMesh.so
 //-wr    I guess there's rule to describe this feature.
 //-wr    What's the purpose of building like this?
+//-wr    All those files will become "Shared Object".
 \*---------------------------------------------------------------------------*/
 
 #ifndef blockMesh_H
