@@ -47,6 +47,7 @@ void Foam::blockMesh::createPoints() const
         {
             const Vector<label>& density = blocks[blocki].density();
 
+            //-wr what is label?
             label v0 = blocks[blocki].pointLabel(0, 0, 0);
             label vi1 = blocks[blocki].pointLabel(1, 0, 0);
             scalar diStart = mag(blockPoints[vi1] - blockPoints[v0]);
