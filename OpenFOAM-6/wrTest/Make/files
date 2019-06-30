@@ -1,0 +1,3 @@
+wrVectorTest.C
+
+EXE = $(FOAM_APPBIN)/wrVectorTest
