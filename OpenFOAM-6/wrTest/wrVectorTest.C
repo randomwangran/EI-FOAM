@@ -2,21 +2,7 @@
 // a[1 2 3] and b[4 5 6]
 // calculate a dot b =?
 
-
-#include "Time.H"
-#include "IOdictionary.H"
-#include "IOPtrList.H"
-
 #include "blockMesh.H"
-#include "polyTopoChange.H"
-#include "emptyPolyPatch.H"
-#include "cyclicPolyPatch.H"
-
-#include "argList.H"
-#include "OSspecific.H"
-#include "OFstream.H"
-
-#include "Vector.H"
 
 using namespace Foam;
 
