@@ -49,6 +49,11 @@ int main(int argc, char *argv[])
   scalar c;
   c = a & b;
 
+  point d(1,2,3);
+  point e(4,5,6);
+
+  scalar g;
+  g = d & e;
   //-wr    a[1 2 3] dot  b[4 5 6]
   //-wr    
   //-wr      = 1*4 +2*5 +3*6
@@ -59,5 +64,6 @@ int main(int argc, char *argv[])
   
   Info<< "Hi foo!" << endl;
   Info<<  c << endl;
+  Info<<  g <<endl;
   return 0;
 }
