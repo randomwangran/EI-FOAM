@@ -6,14 +6,17 @@ cd ${0%/*} || exit 1    # Run from this directory
 
 application=$(getApplication)
 
-runApplication blockMesh
+
+# [TODO]  let's play with the blockMesh
+#  runApplication blockMesh
 
 #- Test writing collated format
 
-runApplication decomposePar -fileHandler collated
-runParallel $application -fileHandler collated
-runApplication reconstructPar -latestTime -fileHandler collated
+#  runApplication decomposePar -fileHandler collated
+#  runParallel $application -fileHandler collated
+#  runApplication reconstructPar -time '0:2.5' -fileHandler collated
 
+#  runApplication reconstructPar -fileHandler collated
 #  #- Test writing uncollated format
 #  runApplication -s uncollated decomposePar -fileHandler uncollated -force
 #  runParallel -s uncollated $application -fileHandler uncollated
