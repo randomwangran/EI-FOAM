@@ -2,7 +2,14 @@
 // a[1 2 3] and b[4 5 6]
 // calculate a dot b =?
 
-#include "blockMesh.H"
+//-wr    #include "pointField.H"
+//-wr    #include "vector.H"
+//-wr    #include "point.H"
+#include "vector.H"
+//-wr    #include "VectorI.H"
+//-wr    #include "VectorSpace.H"
+//-wr    #include "primitiveFields.H"
+//-wr    #include "pointFieldFwd.H"
 
 using namespace Foam;
 
@@ -17,26 +24,26 @@ int main(int argc, char *argv[])
   //-wr    vector a = (1,2,3);
   //-wr    vector a = (1,2,3);
   //-wr    point a = (1, 2, 3);
-  point a;
+  vector a;
   a.x()=1;
   a.y()=2;
   a.z()=3;
 
-  point b;
+  vector b;
   b.x()=4;
   b.y()=5;
   b.z()=6;
 
-  //-wr    point c;  
-  //-wr    const point& a = (1 2 3);
-  //-wr    const point& b = (4 5 6);
+  //-wr    vector c;  
+  //-wr    const vector& a = (1 2 3);
+  //-wr    const vector& b = (4 5 6);
   //-wr    c = a&b;
 
   scalar c;
   c = a & b;
 
-  point d(1,2,3);
-  point e(4,5,6);
+  vector d(1,2,3);
+  vector e(4,5,6);
 
   scalar g;
   g = d & e;
