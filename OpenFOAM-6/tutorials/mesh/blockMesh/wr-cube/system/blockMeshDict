@@ -119,13 +119,65 @@ faces
 (
 );
 
-
-defaultPatch
-{
-}
+//-wr    end up copy from motorbike bc
+//-wr        \verbatim
+//-wr                       7 ---- 6
+//-wr                  f5   |\     |\   f3
+//-wr                   |   | 4 ---- 5    \
+//-wr                   |   3 |--- 2 |     \
+//-wr                   |    \|     \|      f2
+//-wr                  f4     0 ---- 1
+//-wr    
+//-wr             Z         f0 ----- f1
+//-wr             |  Y
+//-wr             | /
+//-wr             O --- X
+//-wr         \endverbatim
 
 boundary
-( 
+(
+    frontAndBack
+    {
+        type patch;
+        faces
+        (
+            (3 7 6 2)
+            (1 5 4 0)
+        );
+    }
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    lowerWall
+    {
+        type wall;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    upperWall
+    {
+        type patch;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+
 );
 
 // ************************************************************************* //
