@@ -9,50 +9,40 @@ FoamFile
 {
     version     2.0;
     format      ascii;
-    class       dictionary;
-    location    "system";
-    object      controlDict;
+    class       volScalarField;
+    location    "2";
+    object      p;
 }
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-libs            ("libblockMesh.so");
+dimensions      [0 2 -2 0 0 0 0];
 
-//-wr    DebugSwitches
-//-wr    {
-//-wr    //    project 1;
-//-wr    //    searchableExtrudedCircle 1;
-//-wr    //    projectCurve 1;
-//-wr    }
+internalField   uniform -9.82325e-15;
 
-application     icoFoam;
-
-startFrom       startTime;
-
-startTime       0;
-
-stopAt          endTime;
-
-endTime         3;
-
-deltaT          1;
-
-writeControl    timeStep;
-
-writeInterval   1;
-
-purgeWrite      0;
-
-writeFormat     ascii;
-
-writePrecision  6;
-
-writeCompression off;
-
-timeFormat      general;
-
-timePrecision   6;
-
-runTimeModifiable true;
+boundaryField
+{
+    frontAndBack
+    {
+        type            slip;
+    }
+    inlet
+    {
+        type            zeroGradient;
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+    lowerWall
+    {
+        type            zeroGradient;
+    }
+    upperWall
+    {
+        type            slip;
+    }
+}
 
 
 // ************************************************************************* //
