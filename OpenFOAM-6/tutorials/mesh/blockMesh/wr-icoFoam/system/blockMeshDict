@@ -1,0 +1,183 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+//-wr    /home/pi/OpenFOAM/OpenFOAM-6/src/mesh/blockMesh/blockMesh/blockMesh.H
+//-wr    /home/pi/OpenFOAM/OpenFOAM-6/applications/utilities/mesh/generation/blockMesh/blockMesh.C
+geometry
+{
+}
+
+vertices
+(
+ (0 0 0)  //a
+ (1 0 0)  //d
+ (1 1 0)  //c  
+ (0 1 0)  //b
+ (0 0 1)  //e
+ (1 0 1)  //f
+ (1 1 1)  //g  
+ (0 1 1)  //h
+ 
+ //-wr    Somehow different from the real output:
+ //-wr    8((0 0 0) (1 0 0) (0 1 0) (1 1 0) (0 0 1) (1 0 1) (0 1 1) (1 1 1))
+ //-wr    
+ //-wr    The third point is (0 1 0) not my point 'c'
+ 
+ );
+
+blocks
+(
+ //-wr    hex (0 1 2 3 4 5 6 7) (1 1 1) simpleGrading (1 1 1)
+ hex (0 1 2 3 4 5 6 7) (1 1 1) monkey (1 1 1)
+
+        //-wr    "                 7 ---- 6
+        //-wr    "            f5   |\     |\   f3
+        //-wr    "            |    | 4 ---- 5   \
+        //-wr    "            |    3 |--- 2 |    \
+        //-wr    "            |     \|     \|    f2
+        //-wr    "            f4     0 ---- 1
+        //-wr
+        //-wr                        f0 ---f1
+
+        //-wr    Just based on my understanding to the point into this fig.
+ 
+        //-wr    "                 h ---- g
+        //-wr    "            f5   |\     |\   f3
+        //-wr    "            |    | e ---- f   \
+        //-wr    "            |    d |--- c |    \
+        //-wr    "            |     \|     \|    f2
+        //-wr    "            f4     a ---- b
+        //-wr
+        //-wr                        f0 ---f1
+
+ //-wr what am I doing here? I think I believe there is a logic to
+ //-write polyMesh based on my input: blockMesh. It seems that OF is
+ //-not write the point counter-clock-wise.
+
+//-wr    4(0 4 6 2)
+//-wr    4(1 3 7 5)
+//-wr    4(0 1 5 4)
+//-wr    4(2 6 7 3)
+//-wr    4(0 2 3 1)
+//-wr    4(4 5 7 6)
+
+//-wr    Lets base on the following line to imagin this cube.
+//-wr    8(a(1 1 0) b(0 0 0) c(0 1 0) d(1 0 0) e(0 0 1) f(1 0 1) g(0 1 1) h(1 1 1))
+
+         //-wr    "                g ---- h
+        //-wr    "            f5   |\     |\   f3
+        //-wr    "            |    | e ---- f   \
+        //-wr    "            |    c |--- a |    \
+        //-wr    "            |     \|     \|    f2
+        //-wr    "            f4     b ---- d
+        //-wr
+        //-wr                        f0 ---f1
+
+ //-wr    4(0 4 6 2) → (a e g b)
+
+
+        //-wr    "                 6 ---- 7
+        //-wr    "            f5   |\     |\   f3
+        //-wr    "            |    | 4 ---- 5   \
+        //-wr    "            |    2 |--- 3 |    \
+        //-wr    "            |     \|     \|    f2
+        //-wr    "            f4     0 ---- 1
+        //-wr
+        //-wr                        f0 ---f1
+
+        //-wr    Now, the points matches with the faces:
+        //-wr    4(0 4 6 2)
+        //-wr    4(1 3 7 5)
+        //-wr    4(0 1 5 4)
+        //-wr    4(2 6 7 3)
+        //-wr    4(0 2 3 1)
+        //-wr    4(4 5 7 6)
+
+ // when you define points in 'blockMeshDict', must follow the 'clock'
+ // direction. It is consistant with face definition. Don't try to
+ // follow the index from '/constant/points'.
+ 
+ );
+
+edges
+(
+);
+
+faces
+(
+);
+
+//-wr    end up copy from motorbike bc
+//-wr        \verbatim
+//-wr                       7 ---- 6
+//-wr                  f5   |\     |\   f3
+//-wr                   |   | 4 ---- 5    \
+//-wr                   |   3 |--- 2 |     \
+//-wr                   |    \|     \|      f2
+//-wr                  f4     0 ---- 1
+//-wr    
+//-wr             Z         f0 ----- f1
+//-wr             |  Y
+//-wr             | /
+//-wr             O --- X
+//-wr         \endverbatim
+
+boundary
+(
+    frontAndBack
+    {
+        type patch;
+        faces
+        (
+            (3 7 6 2)
+            (1 5 4 0)
+        );
+    }
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    lowerWall
+    {
+        type wall;
+        faces
+        (
+            (0 3 2 1)
+        );
+    }
+    upperWall
+    {
+        type patch;
+        faces
+        (
+            (4 5 6 7)
+        );
+    }
+
+);
+
+// ************************************************************************* //
