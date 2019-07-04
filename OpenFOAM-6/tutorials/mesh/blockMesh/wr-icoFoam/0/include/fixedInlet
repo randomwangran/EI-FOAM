@@ -8,8 +8,14 @@
 
 inlet
 {
-    type  monkey;
+    //-wr    type  codedMixed;
+    //-wr    type uniformFixedGradient;
+    //-wr    better familar with grep to find default value.
+    type  fixedValue;    
+    value table ( ( 0 ( 0 0 0 ) ) ( 1 ( 0 -15 0 ) ) ( 2 ( 0 -15 0 ) ) );
 
+    //-wr      uniformValue    table ( ( 0 ( 0 0 0 ) ) ( 0.01 ( 0 -15 0 ) ) ( 100 ( 0 -15 0 ) ) );
+    
     //-wr      SRFFreestreamVelocity
     //-wr      SRFVelocity
     //-wr      SRFWallVelocity
