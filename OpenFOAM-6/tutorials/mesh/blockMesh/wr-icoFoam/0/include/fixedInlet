@@ -8,8 +8,92 @@
 
 inlet
 {
-    type  fixedValue;
-    value $internalField;
+    type  monkey;
+
+    //-wr      SRFFreestreamVelocity
+    //-wr      SRFVelocity
+    //-wr      SRFWallVelocity
+    //-wr      activeBaffleVelocity
+    //-wr      activePressureForceBaffleVelocity
+    //-wr      advective
+    //-wr      calculated
+    //-wr      codedFixedValue
+    //-wr      codedMixed
+    //-wr      cyclic
+    //-wr      cyclicACMI
+    //-wr      cyclicAMI
+    //-wr      cyclicRepeatAMI
+    //-wr      cyclicSlip
+    //-wr      cylindricalInletVelocity
+    //-wr      directionMixed
+    //-wr      empty
+    //-wr      externalCoupled
+    //-wr      extrapolatedCalculated
+    //-wr      fixedGradient
+    //-wr      fixedInternalValue
+    //-wr      fixedJump
+    //-wr      fixedJumpAMI
+    //-wr      fixedMean
+    //-wr      fixedMeanOutletInlet
+    //-wr      fixedNormalInletOutletVelocity
+    //-wr      fixedNormalSlip
+    //-wr      fixedProfile
+    //-wr      fixedValue
+    //-wr      flowRateInletVelocity
+    //-wr      flowRateOutletVelocity
+    //-wr      fluxCorrectedVelocity
+    //-wr      freestream
+    //-wr      freestreamVelocity
+    //-wr      inletOutlet
+    //-wr      interstitialInletVelocity
+    //-wr      mapped
+    //-wr      mappedField
+    //-wr      mappedFixedInternalValue
+    //-wr      mappedFixedPushedInternalValue
+    //-wr      mappedFlowRate
+    //-wr      mappedVelocityFlux
+    //-wr      matchedFlowRateOutletVelocity
+    //-wr      mixed
+    //-wr      movingWallVelocity
+    //-wr      noSlip
+    //-wr      nonuniformTransformCyclic
+    //-wr      outletInlet
+    //-wr      outletMappedUniformInlet
+    //-wr      outletPhaseMeanVelocity
+    //-wr      partialSlip
+    //-wr      pressureDirectedInletOutletVelocity
+    //-wr      pressureDirectedInletVelocity
+    //-wr      pressureInletOutletParSlipVelocity
+    //-wr      pressureInletOutletVelocity
+    //-wr      pressureInletUniformVelocity
+    //-wr      pressureInletVelocity
+    //-wr      pressureNormalInletOutletVelocity
+    //-wr      processor
+    //-wr      processorCyclic
+    //-wr      rotatingPressureInletOutletVelocity
+    //-wr      rotatingWallVelocity
+    //-wr      sliced
+    //-wr      slip
+    //-wr      supersonicFreestream
+    //-wr      surfaceNormalFixedValue
+    //-wr      swirlFlowRateInletVelocity
+    //-wr      swirlInletVelocity
+    //-wr      symmetry
+    //-wr      symmetryPlane
+    //-wr      timeVaryingMappedFixedValue
+    //-wr      translatingWallVelocity
+    //-wr      turbulentInlet
+    //-wr      uniformFixedGradient
+    //-wr      uniformFixedValue
+    //-wr      uniformInletOutlet
+    //-wr      uniformJump
+    //-wr      uniformJumpAMI
+    //-wr      variableHeightFlowRateInletVelocity
+    //-wr      waveTransmissive
+    //-wr      wedge
+    //-wr      zeroGradient
+
+    //-wr    value $internalField;
 }
 
 // ************************************************************************* //
