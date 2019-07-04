@@ -1,33 +1,35 @@
+#+SEQ_TODO: TODO(t) DOING(w)  | DONE(d)
 * TOC                                                                   :TOC:
-- [[#the-openfoam-technology-primer][The OpenFOAM Technology Primer]]
-  - [[#share-the-folder-between-rpi-and-win10][share the folder between RPI and Win10]]
+- [[#todo-the-openfoam-technology-primer][TODO The OpenFOAM Technology Primer]]
+  - [[#done-share-the-folder-between-rpi-and-win10][DONE share the folder between RPI and Win10]]
 - [[#playing-src][playing src]]
-  - [[#pisofoam][pisoFoam]]
+  - [[#todo-blockmesh][TODO blockMesh]]
   - [[#simplefoam][simpleFoam]]
 - [[#tutorials][tutorials]]
-  - [[#io][IO]]
+  - [[#todo-io][TODO IO]]
+  - [[#doing-pipecyclic][DOING pipeCyclic]]
   - [[#pip][pip]]
   - [[#dambreak][damBreak]]
 - [[#why-mesh-not-pass][why mesh not pass]]
-  - [[#initial-asking][initial asking]]
-  - [[#2nd-round][2nd round]]
-  - [[#reply-to-wwzhao-study-wm_label_size][reply to wwzhao: study $WM_LABEL_SIZE]]
-  - [[#change-from-32-to-64-not-always-success][change from 32 to 64 not always success]]
-  - [[#what-is-clone][what is ~clone()~]]
-  - [[#what-is-difference-between-ulist-and-list][what is difference between ~UList~ and ~List~?]]
-  - [[#why-there-is-nothing-in-destructor][Why there is nothing in Destructor]]
-  - [[#prepare-a-issue-for-of][prepare a issue for OF]]
-  - [[#attack-from-wm_label_size][attack from WM_LABEL_SIZE]]
-  - [[#int_32-and-int_64][int_32 and int_64]]
+  - [[#done-initial-asking][DONE initial asking]]
+  - [[#done-2nd-round][DONE 2nd round]]
+  - [[#todo-reply-to-wwzhao-study-wm_label_size][TODO reply to wwzhao: study $WM_LABEL_SIZE]]
+  - [[#done-change-from-32-to-64-not-always-success][DONE change from 32 to 64 not always success]]
+  - [[#todo-what-is-clone][TODO what is ~clone()~]]
+  - [[#done-what-is-difference-between-ulist-and-list][DONE what is difference between ~UList~ and ~List~?]]
+  - [[#todo-why-there-is-nothing-in-destructor][TODO Why there is nothing in Destructor]]
+  - [[#todo-prepare-a-issue-for-of][TODO prepare a issue for OF]]
+  - [[#todo-attack-from-wm_label_size][TODO attack from WM_LABEL_SIZE]]
+  - [[#done-int_32-and-int_64][DONE int_32 and int_64]]
   - [[#something-interesting][something interesting]]
 - [[#my-stuip-questions][my stuip questions]]
   - [[#allrun-shell][Allrun shell]]
-  - [[#how-are-these-contains-work][How are these contains work?]]
+  - [[#todo-how-are-these-contains-work][TODO How are these contains work?]]
 - [[#compiling-on-raspberry-pi-3][compiling on raspberry Pi 3]]
   - [[#i-am-sure-i-will-be-addictive-to-openfoam][I am sure I will be addictive to OpenFOAM]]
   - [[#commit-message-rule][commit message rule]]
 
-* The OpenFOAM Technology Primer
+* TODO The OpenFOAM Technology Primer
 
   By Tomislav Maric, Jens Hopken, and Kyle Mooney.
 
@@ -40,7 +42,7 @@
   - I think better to use ParaView on SP to view the result not from
     RP.
 
-** TODO share the folder between RPI and Win10
+** DONE share the folder between RPI and Win10
    <2019-06-22 Sat> I did some experiments using samba but could not
    find on Win 10. It might be the problem with the ethernet's
    adapter.
@@ -59,15 +61,9 @@
   However, I don't have a map. So, I will just pickup anything that is
   interesting to me.
 
-** pisoFoam
+** TODO blockMesh
 
-   [[file:of-6/OpenFOAM-6-master/applications/solvers/incompressible/pisoFoam/pisoFoam.C::\\/%20M%20anipulation%20|][src]]
-   
 ** simpleFoam
-
-   [[file:of-6/OpenFOAM-6-master/applications/solvers/incompressible/simpleFoam/simpleFoam.C::int%20main(int%20argc,%20char%20*argv%5B%5D)][src]]
-
-
 *** a matlab version
 
     [[file:ref/simple-by-Khawaja.m::clear%20all][simple-matlab-version]] and it's [[docview:ref/408-1137-1-PB.pdf::3][corresponding paper]]
@@ -122,6 +118,26 @@
 ** TODO IO
    
    Well, this is quit complicated... so many files generated.
+** DOING pipeCyclic
+
+   What is this swirling inlet?
+
+   #+BEGIN_SRC c++
+    inlet
+    {
+        type            codedFixedValue;
+        value           uniform (1 0 0);
+        name            swirl;
+        code            #{
+            const vector axis(1, 0, 0);
+
+            vectorField v(2.0*this->patch().Cf() ^ axis);
+            v.replace(vector::X, 1.0);
+            operator==(v);
+        #};
+    }
+   #+END_SRC
+
 ** pip
 *** what is the case?
     A 2D line rotation.
