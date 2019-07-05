@@ -11,8 +11,20 @@ inlet
     //-wr    type  codedMixed;
     //-wr    type uniformFixedGradient;
     //-wr    better familar with grep to find default value.
-    type  fixedValue;    
-    value table ( ( 0 ( 0 0 0 ) ) ( 1 ( 0 -15 0 ) ) ( 2 ( 0 -15 0 ) ) );
+        type            codedFixedValue;
+        value           uniform (1 0 0);
+        name            swirl;
+        code            #{
+            const vector axis(1, 0, 0);
+
+            vectorField v(2.0*this->patch().Cf() ^ axis);
+            v.replace(vector::X, 1.0);
+            operator==(v);
+        #};
+
+
+    //-wr    type  fixedValue;    
+    //-wr    value table ( ( 0 ( 0 0 0 ) ) ( 1 ( 0 -15 0 ) ) ( 2 ( 0 -15 0 ) ) );
 
     //-wr      uniformValue    table ( ( 0 ( 0 0 0 ) ) ( 0.01 ( 0 -15 0 ) ) ( 100 ( 0 -15 0 ) ) );
     

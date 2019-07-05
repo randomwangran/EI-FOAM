@@ -6,9 +6,9 @@ cd ${0%/*} || exit 1    # Run from this directory
 . $WM_PROJECT_DIR/bin/tools/CleanFunctions
 
 cleanCase
-#runApplication blockMesh
+runApplication blockMesh
 #  rm log.wr-blockMesh
-runApplication wr-blockMesh
+#  runApplication wr-blockMesh
 #  runApplication blockMesh
 runApplication icoFoam
 
