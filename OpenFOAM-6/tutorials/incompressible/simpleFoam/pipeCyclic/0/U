@@ -21,11 +21,6 @@ internalField   uniform (1 0 0);
 
 boundaryField
 {
-    //-wr    velocity in x direction is the same: 1
-
-    //-wr    <2019-07-04 Thu>
-    //-wr    how the swirl inlet mathmatically descript is unknow to me.
-  
     inlet
     {
         type            codedFixedValue;
