@@ -137,7 +137,17 @@
         #};
     }
    #+END_SRC
+   
+   - what is `this->patch().Cf()`?
 
+     face center vector? 
+
+   - v.replace(vector::X, 1.0); what's this line?
+
+     why replace the X component of the v?
+
+   - what `replace` really replace?
+     
 ** pip
 *** what is the case?
     A 2D line rotation.
