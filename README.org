@@ -7,7 +7,8 @@
   - [[#simplefoam][simpleFoam]]
 - [[#tutorials][tutorials]]
   - [[#todo-io][TODO IO]]
-  - [[#doing-pipecyclic][DOING pipeCyclic]]
+  - [[#todo-pipecyclic][TODO pipeCyclic]]
+  - [[#todo-laplacianfoam][TODO laplacianFoam]]
   - [[#pip][pip]]
   - [[#dambreak][damBreak]]
 - [[#why-mesh-not-pass][why mesh not pass]]
@@ -97,28 +98,28 @@
 *** TODO read J. Anderson's babel
 * tutorials
   
-  | folder           | State   |
-  |------------------+---------|
-  | DNS              |         |
-  | IO               | [Doing] |
-  | basic            |         |
-  | combustion       |         |
-  | compressible     |         |
-  | discreteMethods  |         |
-  | electromagnetics |         |
-  | financial        |         |
-  | heat             |         |
-  | Transfer         |         |
-  | incompressible   |         |
-  | lagrangian       |         |
-  | mesh             |         |
-  | multiphase       |         |
-  | resources        |         |
-  | stressAnalysis   |         |
+  | folder           | State    |
+  |------------------+----------|
+  | DNS              |          |
+  | IO               | [FUTURE] |
+  | basic            | [DOING]  |
+  | combustion       |          |
+  | compressible     |          |
+  | discreteMethods  |          |
+  | electromagnetics |          |
+  | financial        |          |
+  | heat             |          |
+  | Transfer         |          |
+  | incompressible   |          |
+  | lagrangian       |          |
+  | mesh             |          |
+  | multiphase       |          |
+  | resources        |          |
+  | stressAnalysis   |          |
 ** TODO IO
    
    Well, this is quit complicated... so many files generated.
-** DOING pipeCyclic
+** TODO pipeCyclic
 
    What is this swirling inlet?
 
@@ -147,7 +148,8 @@
      why replace the X component of the v?
 
    - what `replace` really replace?
-     
+** TODO laplacianFoam
+   
 ** pip
 *** what is the case?
     A 2D line rotation.
