@@ -39,6 +39,8 @@ void Foam::blockMesh::createPoints() const
 
     points_.setSize(nPoints_);
 
+    //-wr    check this out, might be a better piece?
+    //-wr    https://github.com/OpenFOAM/OpenFOAM-dev/commit/fa33e8e1980a30db3aa5037ccb8a17577a8c2234
     forAll(blocks, blocki)
     {
         const pointField& blockPoints = blocks[blocki].points();
