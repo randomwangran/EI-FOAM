@@ -30,15 +30,80 @@ Description
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
+//-wr    where is this fvCFD.H?
+//       /OpenFOAM-6/src/finiteVolume/cfdTools/general/include/fvCFD.H
+//-wr    #ifndef fvCFD_H
+//-wr    #define fvCFD_H
+//-wr    
+//-wr    #include "parRun.H"
+//-wr    
+//-wr    #include "Time.H"
+//-wr    #include "fvMesh.H"
+//-wr    #include "fvc.H"
+//-wr    #include "fvMatrices.H"
+//-wr    #include "fvm.H"
+//-wr    #include "linear.H"
+//-wr    #include "uniformDimensionedFields.H"
+//-wr    #include "calculatedFvPatchFields.H"
+//-wr    #include "extrapolatedCalculatedFvPatchFields.H"
+//-wr    #include "fixedValueFvPatchFields.H"
+//-wr    #include "zeroGradientFvPatchFields.H"
+//-wr    #include "fixedFluxPressureFvPatchScalarField.H"
+//-wr    #include "constrainHbyA.H"
+//-wr    #include "constrainPressure.H"
+//-wr    #include "adjustPhi.H"
+//-wr    #include "findRefCell.H"
+//-wr    #include "IOMRFZoneList.H"
+//-wr    #include "constants.H"
+//-wr    
+//-wr    #include "OSspecific.H"
+//-wr    #include "argList.H"
+//-wr    #include "timeSelector.H"
+//-wr    
+//-wr    #ifndef namespaceFoam
+//-wr    #define namespaceFoam
+//-wr        using namespace Foam;
+//-wr    #endif
+//-wr    
+//-wr    #endif
 
+//-wr    In case tags not working... do this under src
+//-wr    find ./* -name setRootCase.H
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
 int main(int argc, char *argv[])
 {
     #include "setRootCase.H"
+    //-wr    do checking
+    //-wr    Foam::argList args(argc, argv);
+    //-wr    if (!args.checkRootCase())
+    //-wr    {
+    //-wr        Foam::FatalError.exit();
+    //-wr    }
 
+  
     #include "createTime.H"
+
+    //-wr    Foam::Info<< "Create time\n" << Foam::endl;
+    //-wr    
+    //-wr    Foam::Time runTime(Foam::Time::controlDictName, args);
+
     #include "createMesh.H"
+
+    //-wr    Foam::Info
+    //-wr    << "Create mesh for time = "
+    //-wr    << runTime.timeName() << Foam::nl << Foam::endl;
+    //-wr    
+    //-wr    Foam::fvMesh mesh
+    //-wr    (
+    //-wr        Foam::IOobject
+    //-wr        (
+    //-wr            Foam::fvMesh::defaultRegion,
+    //-wr            runTime.timeName(),
+    //-wr            runTime,
+    //-wr            Foam::IOobject::MUST_READ
+    //-wr        )
+    //-wr    );
 
     volScalarField fx(pow(mesh.C().component(vector::X), 1));
     fx.write();
