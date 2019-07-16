@@ -11,6 +11,7 @@
   - [[#todo-laplacianfoam][TODO laplacianFoam]]
   - [[#pip][pip]]
   - [[#dambreak][damBreak]]
+- [[#dirty-hand][dirty hand]]
 - [[#why-mesh-not-pass][why mesh not pass]]
   - [[#done-initial-asking][DONE initial asking]]
   - [[#done-2nd-round][DONE 2nd round]]
@@ -47,7 +48,7 @@
    <2019-06-22 Sat> I did some experiments using samba but could not
    find on Win 10. It might be the problem with the ethernet's
    adapter.
-   
+
    So, tweak with VNC might be a solution.
 
 * playing src
@@ -74,7 +75,7 @@
 
     Nice term: Reynolds number is just a non-dimensional number,
     i.e. the ratio of convection and diffusion.
-    
+
 **** derive convective terms using central difference method
 
      Equation 14:
@@ -97,7 +98,7 @@
 
 *** TODO read J. Anderson's babel
 * tutorials
-  
+
   | folder           | State    |
   |------------------+----------|
   | DNS              |          |
@@ -117,7 +118,7 @@
   | resources        |          |
   | stressAnalysis   |          |
 ** TODO IO
-   
+
    Well, this is quit complicated... so many files generated.
 ** TODO pipeCyclic
 
@@ -138,10 +139,10 @@
         #};
     }
    #+END_SRC
-   
+
    - what is `this->patch().Cf()`?
 
-     face center vector? 
+     face center vector?
 
    - v.replace(vector::X, 1.0); what's this line?
 
@@ -149,7 +150,7 @@
 
    - what `replace` really replace?
 ** TODO laplacianFoam
-   
+
 ** pip
 *** what is the case?
     A 2D line rotation.
@@ -158,7 +159,7 @@
     [[file:attached_images/screenshot_2019-03-01_22-35-17.png]]
 
 *** what is happening?
-    
+
 *** what is take away?
 
     #+DOWNLOADED: /tmp/screenshot.png @ 2019-02-28 21:46:53
@@ -173,7 +174,7 @@
 
 **** vertices
      #+CONSTANTS: convertToMeters=0.146
-   
+
      |       x |       y |         x' |         y' |
      |---------+---------+------------+------------|
      |       0 |       0 |         0. |         0. |
@@ -195,7 +196,7 @@
 
 *** what is take away?
 **** clean tutorial case
-     #+BEGIN_SRC 
+     #+BEGIN_SRC
      . "$WM_PROJECT_DIR/bin/tools/CleanFunctions"
      cleanCase
      #+END_SRC
@@ -223,6 +224,22 @@
 	   removeCase $case
        done
      #+END_SRC
+* dirty hand
+
+  sovle this pdes with of.
+
+  #+BEGIN_SRC latex
+
+
+    - \nabla \dot  \epsilon_1 \nabla \Phi_1 (x) = 4 \pi \sum_{i=1}^{N} q_i \delta (x - x_i),
+
+    - \nabla ^2 \Phi_2 (x) + \kappa ^2 \Phi_2 (x) = 0,
+
+    x = (r, \theta, \phi)
+
+
+  #+END_SRC
+
 * [[http://cfd-china.com/topic/2191/openfoam%E5%91%A8%E6%9C%9F%E8%BE%B9%E7%95%8C%E7%94%9F%E6%88%90%E4%B8%8D%E6%88%90%E5%8A%9F-cyclic%E7%9A%84%E9%97%AE%E9%A2%98][why mesh not pass]]
 ** DONE initial asking
    I am using OF-dev version (don't know exactly the date I downloaded
@@ -230,8 +247,8 @@
 
    The main classes are found in the flowing path:
 
-   #+BEGIN_SRC 
-   ~/OpenFOAM-dev/src/dynamicMesh/polyTopoChange/polyTopoChange/modifyObject/  
+   #+BEGIN_SRC
+   ~/OpenFOAM-dev/src/dynamicMesh/polyTopoChange/polyTopoChange/modifyObject/
    #+END_SRC
 
    This for loop:
@@ -248,9 +265,9 @@
      polyTopoChange& meshMod
  )
    #+END_SRC
-  
+
    is the point that I feel something might wrong.
-  
+
    I don't know exactly what ~polyModifyFace~ is a function or a
    class. I double checked the defination of ~polyModifyFace~:
 
@@ -276,11 +293,11 @@
 
    I think ~polyModifyFace~ really looks like a function definitio in
    c++, but I migth wrong.
-  
+
    Another thing that I feel strange is that the implymentation of the
    following classes are missing.
 
-   #+BEGIN_SRC 
+   #+BEGIN_SRC
    3.5k 12-14 23:52 polyModifyCell.H
    7.5k 12-14 23:52 polyModifyFace.H
    4.2k 12-14 23:52 polyModifyPoint.H
@@ -312,7 +329,7 @@
    Finally, why make it (~matchToTolerance~) smaller? Do you have any
    reference to this point? I might (can remember exactly) just use
    some default number here.
-  
+
 ** DONE 2nd round
    The reason why I checked ~polyModifyFace~ was that I wanted to study
    the piece of code in:
@@ -351,7 +368,7 @@
   #+END_SRC
 
   I don't know.
-  
+
   @wwzhao thanks for helping. This test case was built ~Jul 06 2018~,
   so I am not sure the exactly envirmental varibles that I was playing with.
 
@@ -392,7 +409,7 @@
 
    So, to represent a single face, one need a ~labelList~ and a
    ~labelListList~ to give sufficient info to the computer.
-   
+
    For example, you have a point whose coordinates is (-0.0206 0
    -0.0005) and we denote it as a label, i.e., 1.
 
@@ -417,7 +434,7 @@ terminate called after throwing an instance of 'std::bad_array_new_length'
   what():  std::bad_array_new_length
   make: *** [benchmark/graphs/twitter.sg] Aborted
    #+END_SRC
-   
+
    He changed the software from:
    #+BEGIN_SRC c++
    typedef int64_t NodeID;
@@ -430,7 +447,7 @@ typedef int32_t WeightT;
    At the end of that conversation, the reporter mentioned the reason
    why this error exists is because of the dowonloading issue by
    comparing MD5 hashes.
-   
+
    So, I think I need further investigate this issue before I really
    made something on cluster.
 ** TODO what is ~clone()~
@@ -458,7 +475,7 @@ typedef int32_t WeightT;
    #+BEGIN_SRC c++
    virtual autoPtr<topoAction> clone() const = 0;
    #+END_SRC
-   
+
    This is a pure virtual function. but what's wrong with const? It's
    just a constant pure function. Noting that the pure virtual
    function will remind the code something wrong if s/he forget to
@@ -503,7 +520,7 @@ int main()
 
    It looks like ~topoAction.H~ is an abstract class. In order to see
    what' really going on with ~clone()~ function
-   
+
    I search the ~clone()~ function within the ~src~ folder.
 
    I goback to where I started:
@@ -545,7 +562,7 @@ return autoPtr<topoAction>(new polyModifyFace(*this));
    //~/OpenFOAM-dev/src/OpenFOAM/containers/Lists/List/List.C
    //102
 template<class T>
-Foam::List<T>::List(const List<T>& a) 
+Foam::List<T>::List(const List<T>& a)
 :
     UList<T>(nullptr, a.size_)
 {
@@ -661,7 +678,7 @@ Foam::List<T>::List(const List<T>& a)
    sorry tha not using snappyHexMesh to build this mesh, instead, I use
    Ansys/ICEM 17.1 to build it.
 
-   #+BEGIN_SRC 
+   #+BEGIN_SRC
 $ checkMesh
 /*---------------------------------------------------------------------------*\
 | =========                 |                                                 |
@@ -718,12 +735,12 @@ Checking topology...
     Number of regions: 1 (OK).
 
 Checking patch topology for multiply connected surfaces...
-    Patch               Faces    Points   Surface topology                  
-    FRONT               1000000  1002000  ok (non-closed singly connected)  
-    INLET               256000   257257   ok (non-closed singly connected)  
-    OUTLET              256000   257257   ok (non-closed singly connected)  
-    CYLINDER            512000   514000   ok (non-closed singly connected)  
-    BACK                1000000  1002000  ok (non-closed singly connected)  
+    Patch               Faces    Points   Surface topology
+    FRONT               1000000  1002000  ok (non-closed singly connected)
+    INLET               256000   257257   ok (non-closed singly connected)
+    OUTLET              256000   257257   ok (non-closed singly connected)
+    CYLINDER            512000   514000   ok (non-closed singly connected)
+    BACK                1000000  1002000  ok (non-closed singly connected)
 
 Checking geometry...
     Overall domain bounding box (-32 -32 0) (32 32 3.33332)
@@ -742,33 +759,33 @@ Checking geometry...
 
 Mesh OK.
 
-End   
+End
    #+END_SRC
 
    However, when running ~createPatch~ command:
 #+BEGIN_SRC c++
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 Create time
- 
+
 Create polyMesh for time = 0
- 
+
 Reading createPatchDict
- 
-Adding new patch FRONT_CYC as patch 5 from 
+
+Adding new patch FRONT_CYC as patch 5 from
 {
     type            cyclic;
     neighbourPatch  BACK_CYC;
     matchTolerance  0.01;
 }
- 
-Adding new patch BACK_CYC as patch 6 from 
+
+Adding new patch BACK_CYC as patch 6 from
 {
     type            cyclic;
     neighbourPatch  FRONT_CYC;
     matchTolerance  0.01;
 }
- 
- 
+
+
 Moving faces from patch FRONT to patch 5
 terminate called after throwing an instance of 'std::bad_array_new_length'
   what():  std::bad_array_new_length
@@ -869,7 +886,7 @@ maximum number in the current case (faces) there is 769512000 faces.
      class Timer
      {
      private:
-	     // Type aliases to make accessing nested type easier                                                                                                                                          
+	     // Type aliases to make accessing nested type easier
 	     using clock_t = std::chrono::high_resolution_clock;
 	     using second_t = std::chrono::duration<double, std::ratio<1> >;
 
@@ -897,9 +914,9 @@ maximum number in the current case (faces) there is 769512000 faces.
 	     int m_array[1];
 
      public:
-	     dummy() // zero the member array                                                                                                                                                  
+	     dummy() // zero the member array
 	     {
-		     // If we want the array to have values, we'll have to use assignment here                                                                                                                    
+		     // If we want the array to have values, we'll have to use assignment here
 		     m_array[0] = 4294967295;
 	     }
      };
@@ -925,7 +942,7 @@ maximum number in the current case (faces) there is 769512000 faces.
    I notice that OpenFOAM use this command almost in every tutorial:
 
    #+BEGIN_SRC sh
-     cd ${0%/*} || exit 1    # Run from this directory    
+     cd ${0%/*} || exit 1    # Run from this directory
    #+END_SRC
 
    I usually delete this line then execute: `./Allrun'
@@ -954,7 +971,7 @@ maximum number in the current case (faces) there is 769512000 faces.
      Read and execute commands from STRING after processing the options,
      then exit.  Any remaining arguments are assigned to the positional
      parameters, starting with '$0'.
-   
+
    #+END_QUOTE
 
    Interesting, when I use the command: `bash -c ./Allrun'
@@ -1002,7 +1019,7 @@ maximum number in the current case (faces) there is 769512000 faces.
     #+END_SRC
 
     <2019-06-11 Tue 16:42>
-    
+
   - Step 11
 
     <2019-06-11 Tue 16:44> start to build ParaView with Python and MPI:
@@ -1013,7 +1030,7 @@ maximum number in the current case (faces) there is 769512000 faces.
 
       ./makeParaView -python -mpi -python-lib /usr/lib/arm-linux-gnueabihf/libpython2.7.so.1.0 > log.makePV 2>&1
     #+END_SRC
-    
+
     <2019-06-11 Tue 16:52> system shut down; might relate to too much
     cpu load. temperature > 40C.
 
@@ -1027,8 +1044,8 @@ maximum number in the current case (faces) there is 769512000 faces.
     ParaView was successfully installed.
 
     Now start to build OF:
-    <2019-06-11 Tue 20:11> ./Allwmake 
-  
+    <2019-06-11 Tue 20:11> ./Allwmake
+
     <2019-06-12 Wed 15:32> Building success!
 
     Total building time: 19 hours and 21 minutes.
@@ -1041,7 +1058,7 @@ maximum number in the current case (faces) there is 769512000 faces.
 ** I am sure I will be addictive to OpenFOAM
 
    #+BEGIN_SRC sh
-pi@raspberrypi:~ $ wr-icoFoam 
+pi@raspberrypi:~ $ wr-icoFoam
 /*---------------------------------------------------------------------------*\
   =========                 |
   \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
@@ -1084,8 +1101,3 @@ allowSystemOperations : Allowing user-supplied system call operations
    - [source code]
 
    - [doc] add note in README.org
-
-     
-                                            
-     
-
